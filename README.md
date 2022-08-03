@@ -8,7 +8,7 @@ Before starting, you need the following:
     - Current on [Software Maintenance Service (SMS)](https://www.mathworks.com/services/maintenance.html).  
     - Linked to a [MathWorks Account](https://www.mathworks.com/mwaccount/).
     - Concurrent license type. To check your license type, see [MathWorks License Center](https://www.mathworks.com/licensecenter/). 
-    - Configured to use a network license manager on the virtual network. By default, the deployment of MATLAB Web App Server includes a network license manager, but you can also use an existing license manager. In either case, activate or move the license after deployment. For details, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/licensingoncloud/matlab-Web App-server-on-the-cloud.html).   
+    - Configured to use a network license manager on the virtual network. By default, deploying MATLAB Web App Server on Azure deploys a network license manager, but you can also use an existing network license manager. In either case, activate or move the license after deployment. For details, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html).   
 -   A Microsoft Azure™ account.
 
 # Costs
@@ -24,7 +24,9 @@ Web App Server on Azure using your Azure account. The automation is
 accomplished using an Azure Resource Manager (ARM) template. The template is a JSON
 file that defines the resources needed to deploy and manage MATLAB Web App
 Server on Azure.
-For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources). 
+For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources).
+
+Deploying MATLAB Web App Server on Azure automatically deploys a network license manager. However, you can also use an existing network license manager with MATLAB Web App Server on Azure by selecting *existing* from the deployment template. 
 
 # Deployment Steps
 
