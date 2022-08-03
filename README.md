@@ -4,7 +4,7 @@
 
 Before starting, you need the following:
 
--   A MATLAB® Web App Server™ license. For details, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud. For details, see [Get License Server MAC Address](#get-network-license-manager-mac-address).    
+-   A MATLAB® Web App Server™ license. For details, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud which can be obtained after deploying MATLAB Web App Server on Azure. For details, see [Get License Server MAC Address](#get-network-license-manager-mac-address).    
 -   A Microsoft Azure™ account.
 
 # Costs
