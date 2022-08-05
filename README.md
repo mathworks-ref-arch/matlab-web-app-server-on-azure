@@ -4,25 +4,20 @@
 
 Before starting, you need the following:
 
--   A MATLAB® Web App Server™ license. For details, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud which can be obtained after deploying MATLAB Web App Server on Azure. For details, see [Get License Server MAC Address](#get-network-license-manager-mac-address).    
+-   A MATLAB® Web App Server™ license. For details, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud. This can be obtained from the network license manager webpage after deploying MATLAB Web App Server on Azure reference architecture. For details, see [Get License Server MAC Address](#get-network-license-manager-mac-address).    
 -   A Microsoft Azure™ account.
 
 # Costs
-You are responsible for the cost of the Azure services used when you create cloud resources using this guide. Resource settings, such as instance type, will affect
-the cost of deployment. For cost estimates, see the pricing pages for each Azure
+You are responsible for the cost of the Azure services used when you create cloud resources using this guide. Resource settings, such as instance type, will affect the cost of deployment. For cost estimates, see the pricing pages for each Azure
 service you will be using. Prices are subject to change.
 
 
 # Introduction 
 
-The following guide will help you automate the process of running MATLAB
-Web App Server on Azure using your Azure account. The automation is
-accomplished using an Azure Resource Manager (ARM) template. The template is a JSON
-file that defines the resources needed to deploy and manage MATLAB Web App
-Server on Azure.
-For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources).
+The following guide will help you automate the process of running MATLAB Web App Server on Azure using your Azure account. The automation is accomplished using an Azure Resource Manager (ARM) template. The template is a JSON file that defines the resources needed to deploy and manage MATLAB Web App
+Server on Azure. For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources).
 
-Deploying MATLAB Web App Server on Azure automatically deploys a network license manager. However, you can also use an existing network license manager with MATLAB Web App Server on Azure by selecting *existing* from the deployment template. 
+Deploying MATLAB Web App Server on Azure automatically deploys a network license manager. However, you can also use an existing network license manager with MATLAB Web App Server on Azure by selecting `existing` from the deployment template. 
 
 # Deployment Steps
 
