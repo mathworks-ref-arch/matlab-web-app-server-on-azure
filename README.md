@@ -55,54 +55,32 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Subnet for Application Gateway--CIDR Range** | Specify the IP address range of the second subnet in CIDR notation or use the default value. The second subnet hosts the application gateway. |
 | **Subnet for Application Gateway--Available Private IP Address** |   Specify an unused IP address from Subnet 2 or use the default value. This IP address serves as the private IP of the application gateway. |
 | **Resource Group Name Of Virtual Network** |   Specify the resource group name of the virtual network or use the default value.    |
-| **Frontend Cert Data** | <details> |
-| **Frontend Cert Password** | <details> |
-| **Admin Username**          | Specify the administrator user name for all VMs. Use this user name to log in to the MATLAB Web App Server dashboard.                                                                              | **Admin Password**          | Specify the administrator password for all VMs. Use this password to log in to the MATLAB Web App Server dashboard. If you also deploy the network license manager, use this password to log in to the network license manager dashboard.|
-| **Allow connections from** | This is the IP address range that will be allowed to connect to the dashboard that manages the server, and the network license manager. The format for this field is IP Address/Mask. <p><em>Example</em>: </p>10.0.0.1/32 <ul><li>This is the public IP address which can be found by searching for "what is my ip address" on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP addresses.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul></p> |
-| **Create Azure Redis Cache**| Choose whether you want to create an Azure Redis Cache service. Creating this service will allow you to use the persistence functionality of the server. Persistence provides a mechanism to cache data between calls to MATLAB code running on a server instance.|
-| **Use Public IP Addresses**| Choose 'Yes' if you want to make your solution available over the internet. <br/>If you choose 'No', the ARM template does not assign a public IP address for the VM that hosts the dashboard. To access the dashboard, you can use a different VM located in the same virtual network as the VM that hosts the dashboard.  |
-|**Deploy Network License Manager**| Select whether you want to deploy the Network License Manager for MATLAB to manage your license files. Selecting 'Yes' deploys the Network License Manager for MATLAB reference architecture. Select 'No' if you want to use an exisitng license server. |
-| **Certificate Input Type** |   Specify an SSL certificate for the Azure application gateway to use. The application gateway provides an HTTPS endpoint that you use to connect to server instances and the MATLAB Web App Server dashboard.<br/>The deployment template provides an option to use either an SSL certificate that already exists in the Azure KeyVault or specify a string that is a base64-encoded value of an SSL certificate that is in PFX format. <br/><br/>Prerequisites for using the KeyVault:<br/><ul><li>KeyVault with an SSL certificate. For information about creating a KeyVault and adding a certificate, see [Azure documentation](https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal). <br/>Record the secret ID of the certificate. You will need to enter it in the MATLAB Web App Server deployment template.</li><li>User-assigned managed identity in Azure that has permission to access the KeyVault. For details on creating a managed identity, see [Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal#create-a-user-assigned-managed-identity).<br/>Record the resource ID of the managed identity that you create. You will need to enter it in the MATLAB Web App Server deployment template.<br/>Grant your managed identity access to the KeyVault. To do so, navigate to the KeyVault you created earlier and add a role assignment that has at least read access to the KeyVault. For details on adding a role assignment, see [Azure documentation](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal?tabs=current#step-2-open-the-add-role-assignment-pane).</li></ul><br/>Select if you will use a certificate from the Azure KeyVault or enter a base64-encoded PFX certificate string. <br/><br/>If you select KeyVault, enter values for **Managed Identity Resource ID for KeyVault** and **Secret ID of Certificate in KeyVault**.<br/><br/>If you select Base-64 encoded PFX Certificate, enter values for **Base64-encoded PFX Certificate Data** and **Password for Base64-encoded PFX Certificate**.|
-| **Secret ID of Certificate in KeyVault** |   Enter the secret ID of the SSL certificate present in the KeyVault.    |
-| **Managed Identity Resource ID for KeyVault** |   Enter the resource ID of the managed identity that has permission to access the KeyVault.    |
 | **Base64Encoded PFX Certificate Data** |   Enter a string that is a base64-encoded value of an SSL certificate in PFX format.    |
 | **Password for Base64-encoded PFX Certificate** |   If the certificate requires a password, enter it here. Otherwise, leave the field blank.    |
+| **Admin Username** | Specify the administrator user name for all VMs. Use this user name to log in to the MATLAB Web App Server dashboard.|                                                                      
+| **Admin Password** | Specify the administrator password for all VMs. Use this password to log in to the MATLAB Web App Server dashboard. If you also deploy the network license manager, use this password to log in to the network license manager dashboard.|
+| **Deploy Network License Manager** | Select whether you want to deploy the Network License Manager for MATLAB to manage your license files. Selecting 'Yes' deploys the Network License Manager for MATLAB reference architecture. Select 'No' if you want to use an exisitng license server.|
 
 Click **Purchase** to begin the deployment. This can take up to 40 minutes.
 
-## Step 3. Upload License File
-The Network License Manager for MATLAB manages the MATLAB Web App Server license file. The MATLAB Web App Server deployment template provides an option to deploy the license manager or use an existing license manager. For more information about the Network License Manager for MATLAB, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-azure). The following steps show how to upload the license file using the Network License Manager for MATLAB dashboard: 
-> **Note**: You must provide a fixed license server MAC address to get a license file from the MathWorks License Center. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/licensingoncloud/matlab-Web App-server-on-the-cloud.html).     
+## Step 3. Upload License File   
 1. In the Azure Portal, click **Resource
     groups** and select the resource group containing your cluster resources.
 1. Select **Deployments** from the left pane and click **Microsoft.Template**.
 1. Click **Outputs**. Copy the parameter value for **networkLicenseManagerURL** and paste it in a browser.
-1. Log in using the password that you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
+1. Log in using the password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
 1. Follow the instructions in the Network License Manager for MATLAB dashboard to upload your MATLAB Web App Server license.
 
 
-## Step 4. Connect and Log In to the Dashboard
-The MALAB Web App Server dashboard provides a web-based interface to
-configure and manage server instances on the cloud. If your solution uses private IP addresses, you can connect to the dashboard from a VM that belongs to the same virtual network as the VM that hosts the dashboard.
->   **Note:** Complete these steps only after your resource group has been successfully created.
-
-> **Note:** The Internet Explorer web browser is not supported for interacting with the dashboard. 
-
+## Step 4. Open the MATLAB Web App Server Apps Home Page
 1.  In the Azure Portal, click **Resource
     groups** and select the resource group you created for this deployment from the list.
 1.  Select **Deployments** from the left pane and click **Microsoft.Template**.
-1.  Click **Outputs** from the left pane. Copy the parameter value for **dashboardURL** and paste it in a browser.  
-1.  Log in using the administrator user name and password that you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
-
-![MATLAB Web App Server Dashboard](/releases/R2022a/images/dashboardLogin.png?raw=true) 
+1.  Click **Outputs** from the left pane. Copy the parameter value for **webAppServerURL** and paste it in a browser.  
 
 You are now ready to use MATLAB Web App Server on Azure. 
 
-For more information on how to use the dashboard, see [MATLAB Web App Server Reference Architecture Dashboard](https://www.mathworks.com/help/mps/server/use-matlab-Web App-server-cloud-dashboard-on-azure-reference-architecture.html).
-
-Configuring role-based access control for the dashboard is recommended. Role-based access control uses Azure AD to let you grant users the privileges to perform tasks on the dashboard and server, based on their role. For more information on how to configure role-based access control, see [Dashboard Access Control](https://www.mathworks.com/help/mps/server/dashboard-access-control-for-azure-reference-architecture.html).
-
-To run applications on MATLAB Web App Server, you will need to create applications using MATLAB Compiler SDK. For more information, see [Deployable Archive Creation](https://www.mathworks.com/help/mps/deployable-archive-creation.html) in the MATLAB Web App Server product documentation.
+To run applications on MATLAB Web App Server, you need to create applications using MATLAB Compiler. For more information, see [Create Web App](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler documentation.
 
 # Architecture and Resources
 Deploying this reference architecture will create several resources in your
