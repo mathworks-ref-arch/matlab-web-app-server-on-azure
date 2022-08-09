@@ -86,21 +86,21 @@ To run applications on MATLAB Web App Server, you need to create applications us
 Deploying this reference architecture will create several resources in your
 resource group.
 
-*Architecture on Azure*
-
-![Cluster Architecture](/releases/R2022a/images/mps-ref-arch-azure-architecture-diagram.jpg?raw=true)
-
 ### Resources
 | Resource Name                                                              | Resource Name in Azure  | Number of Resources | Description                                                                                                                                                                                                                                                                                                                        |
 |----------------------------------------------------------------------------|-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MATLAB Web App Server dashboard virtual machine | `servermachine`           | 1                   | Virtual machine (VM) that hosts the MATLAB Web App Server dashboard. Use the dashboard to: <ul><li>Get HTTP/HTTPS endpoint to make requests</li><li> Upload applications (CTF files) to the server</li><li> Manage server configurations</li></ul><p>For more information, see [MATLAB Web App Server Reference Architecture Dashboard](https://www.mathworks.com/help/mps/server/use-matlab-Web App-server-cloud-dashboard-on-azure-reference-architecture.html).   |
-| MATLAB Web App Server dashboard public IP                           | `servermachine-public-ip` | 1                   | Public IP address to connect to MATLAB Web App Server dashboard.<p>**NOTE**: Provides HTTPS endpoint to the dashboard for managing server instances.</p>                                                                                                                                                                                                                                                            |
-| Virtual machine scale set                                                  | `vmss<uniqueID>`        | 1                   | Manages the number of identical VMs to be deployed. Each VM runs an instance of MATLAB Web App Server which in turn runs multiple MATLAB workers.                                                                                                                                                                               |
-| Application gateway                                                        | `vmss<uniqueID>-agw`    | 1                   | Provides routing and load balancing service to MATLAB Web App Server instances. The MATLAB Web App Server dashboard retrieves the HTTP/HTTPS endpoint for making requests to the server from the application gateway resource.<p>**NOTE**: Provides HTTPS endpoint to the server for making requests.</p>                                                                                           |
-| Storage account                                                            | `serverlog<uniqueID>`   | 1                  | Storage account where the deployable archives (CTF files) created by MATLAB® Compiler SDK™ will be stored. The deployable archives (CTF files) will be stored in a file share.                                                                                                                                                                                                  |
-| Virtual network                                                           | `vmss<uniqueID>-vnet`   | 1                   | Enables resources to communicate with each other.                                                                                                                                                                                                                                                                                  |
-| Azure Cache for Redis |  `vmss<uniqueID>redis` | 1 | Enables caching of data between calls to MATLAB code running on a server instance. |
-| Application Insights |  `logs-apmservice` | 1 | Enables storing and viewing of all logs associated with deployment. |
+| Application gateway | `appGw<uniqueID>`    | 1                   | Provides routing and load balancing service to MATLAB Web App Server instances.|
+| TBD |  `appGw-public-ip` | 1 | TBD |
+| TBD | `netlm-server`        | 1                   | TBD |
+| TBD |  `netlm-server-ip` | 1 | TBD |
+| TBD |  `netlm-server-nic` | 1 | TBD |
+| MATLAB Web App Server Public IP                           | `servermachine-public-ip` | 1                   | Public IP address to connect to MATLAB Web App Server. |
+| Virtual network                                                           | `webapp-refarch-vnet`   | 1                   | Enables resources to communicate with each other. |
+| TBD | `webappVM`           | 1                   | Virtual machine (VM) that hosts MATLAB Web App Server.|
+| TBD |  `webappNic` | 1 | TBD |
+| TBD |  `webapp-refarch-vnet` | 1 | TBD |
+| Storage account                                                            | `webapps<uniqueID>`   | 1                  | Storage account where the deployable archives (CTF files) are stored. |
+
 
 # FAQ
 ## How do I use an existing virtual network to deploy MATLAB Web App Server?
@@ -113,17 +113,6 @@ In addition to the parameters specified in the section [Configure Cloud Resource
 | `27000` | Required for communication between network license manager and the workers. |
 | `65200` - `65535` | Required for the Azure application gateway health check to work. These ports need to be accessible over the internet. For more information, see [MSDN Community](https://social.msdn.microsoft.com/Forums/azure/en-US/96a77f18-3b71-45d2-a213-c4ba63fd4e63/internal-application-gateway-backend-health-is-unkown?forum=WAVirtualMachinesVirtualNetwork). |
 | `22`, `3389` | (Optional) Required for Remote Desktop functionality. This can be used for troubleshooting and debugging. |
-
-## How do I launch a template that uses a previous MATLAB release?
-You may use one of the deploy buttons below to deploy an older release of MATLAB Web App Server Reference Architecture. Note that the operating system is a parameter of the ARM template.
-| Release | Windows Server / Ubuntu                                                                                                                                                                                                                                                                         | 
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R2021b  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-Web App-server-on-azure%2Fmaster%2Freleases%2FR2021b%2Ftemplates%2Fazuredeploy21b.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
-| R2021a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-Web App-server-on-azure%2Fmaster%2Freleases%2FR2021a%2Ftemplates%2Fazuredeploy21a.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
-| R2020b  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-Web App-server-on-azure%2Fmaster%2Freleases%2FR2020b%2Ftemplates%2Fazuredeploy20b.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
-
-
-For more information, see [previous releases](/releases).
 
 
 ## What versions of MATLAB Runtime are supported?
