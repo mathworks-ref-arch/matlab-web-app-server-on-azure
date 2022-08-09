@@ -87,22 +87,22 @@ Deploying this reference architecture will create several resources in your
 resource group.
 
 ### Resources
-| Resource Name  | Type | Purpose                                                                                                                                                                                                                                                                                                                        |
+| Resource Name  | Type | Description                                                                                                                                                                                                                                                                                                                        |
 |-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  `app-gw-sg` | Network security group | Filters network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
-|  `appGw-public-ip` | Public IP address | Public IP address of application gateway. |
-| `appGw<uniqueID>`    | Application gateway | Provides routing and load balancing service to MATLAB Web App Server instance.|
-| `netlm-nsg`        | Network security group | Filters network traffic to and from network license manager resources in an Azure virtual network. |
-| `netlm-server`        | Virtual machine  | Virtual machine hosting network license manager. |
-|  `netlm-server-ip` | Public IP address | Network license manager public IP adddress. |
-|  `netlm-server-nic` | Network interface | Provides network interface for network license manager. |
+|  `app-gw-sg` | Network security group | Filter network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
+|  `appGw-public-ip` | Provide public IP address | Public IP address to application gateway. |
+| `appGw<uniqueID>`    | Application gateway | Provide routing and load balancing service to MATLAB Web App Server instance.|
+| `netlm-nsg`        | Network security group | Filter network traffic to and from network license manager resources in an Azure virtual network. |
+| `netlm-server`        | Virtual machine  | Virtual machine to host network license manager. |
+|  `netlm-server-ip` | Public IP address | Provide public IP address to network license manager. |
+|  `netlm-server-nic` | Network interface | Provide network interface for network license manager. |
 |  `netlm-server_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting network license manager. |
 | `servermachine-public-ip` | Public IP address | Public IP address to connect to MATLAB Web App Server. |
-| `webapp-refarch-vnet`   | Virtual network | Enables resources to communicate with each other. |
-|  `webapp-sg-temp` | Network security group | Filters network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
-|  `webappNic` | Network interface | Provides network interface for MATLAB Web App Server. |
+| `webapp-refarch-vnet`   | Virtual network | Enable resources to communicate with each other via network. |
+|  `webapp-sg-temp` | Network security group | Filter network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
+|  `webappNic` | Network interface | Provide network interface for MATLAB Web App Server. |
 | `webapps<uniqueID>`   | Storage account | Storage account where web app archives (.ctf files) are stored. |
-| `webappVM`           | Virtual machine | Virtual machine hosting MATLAB Web App Server.|
+| `webappVM`           | Virtual machine | Virtual machine to host MATLAB Web App Server.|
 |  `webappVM_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting MATLAB Web App Server. |
 
 <!--| Resource Name                                                              | Resource Name in Azure  | Number of Resources | Purpose                                                                                                                                                                                                                                                                                                                        |
