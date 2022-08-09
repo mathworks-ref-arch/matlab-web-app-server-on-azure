@@ -87,23 +87,23 @@ Deploying this reference architecture will create several resources in your
 resource group.
 
 ### Resources
-| Resource Name                                                              | Resource Name in Azure  | Number of Resources | Description                                                                                                                                                                                                                                                                                                                        |
+| Resource Name                                                              | Resource Name in Azure  | Number of Resources | Purpose                                                                                                                                                                                                                                                                                                                        |
 |----------------------------------------------------------------------------|-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Application Gateway Network Security Group |  `app-gw-sg` | 1 | TBD |
-| Application Gateway Public IP |  `appGw-public-ip` | 1 | TBD |
-| Application Gateway | `appGw<uniqueID>`    | 1                   | Provides routing and load balancing service to MATLAB Web App Server instances.|
-| Network License Manager Network Security Group | `netlm-nsg`        | 1                   | TBD |
-| Network License Manager | `netlm-server`        | 1                   | TBD |
-| Network License Manager Public IP |  `netlm-server-ip` | 1 | TBD |
-| Network License Manager NIC |  `netlm-server-nic` | 1 | TBD |
-| Network License Manager OS Disk |  `netlm-server_OsDisk_<uniqueID>` | 1 | TBD |
+| Application Gateway Network Security Group |  `app-gw-sg` | 1 | Filters network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
+| Application Gateway Public IP |  `appGw-public-ip` | 1 | Public IP address of application gateway. |
+| Application Gateway | `appGw<uniqueID>`    | 1 | Provides routing and load balancing service to MATLAB Web App Server instance.|
+| Network License Manager Network Security Group | `netlm-nsg`        | 1 | Filters network traffic to and from network license manager resources in an Azure virtual network. |
+| Network License Manager Server | `netlm-server`        | 1  | Virtual machine hosting network license manager. |
+| Network License Manager Public IP |  `netlm-server-ip` | 1 | Network license manager public IP adddress. |
+| Network License Manager NIC |  `netlm-server-nic` | 1 | Provides network interface for network license manager. |
+| Network License Manager OS Disk |  `netlm-server_OsDisk_<uniqueID>` | 1 | Operating system disk attached to virtual machine hosting network license manager. |
 | MATLAB Web App Server Public IP                           | `servermachine-public-ip` | 1                   | Public IP address to connect to MATLAB Web App Server. |
 | Virtual Network                                                           | `webapp-refarch-vnet`   | 1                   | Enables resources to communicate with each other. |
-| MATLAB Web App Server Network Security Group |  `webapp-sg-temp` | 1 | TBD |
-| MATLAB Web App Server NIC |  `webappNic` | 1 | TBD |
-| Storage account                                                            | `webapps<uniqueID>`   | 1                  | Storage account where the deployable archives (CTF files) are stored. |
-| MATLAB Web App Server Virtual Machine | `webappVM`           | 1                   | Virtual machine (VM) that hosts MATLAB Web App Server.|
-| MATLAB Web App Server OS Disk |  `webappVM_OsDisk_<uniqueID>` | 1 | TBD |
+| MATLAB Web App Server Network Security Group |  `webapp-sg-temp` | 1 | Filters network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
+| MATLAB Web App Server NIC |  `webappNic` | 1 | Provides network interface for MATLAB Web App Server. |
+| Storage account                                                            | `webapps<uniqueID>`   | 1                  | Storage account where web app archives (.ctf files) are stored. |
+| MATLAB Web App Server Virtual Machine | `webappVM`           | 1                   | Virtual machine hosting MATLAB Web App Server.|
+| MATLAB Web App Server OS Disk |  `webappVM_OsDisk_<uniqueID>` | 1 | Operating system disk attached to virtual machine hosting MATLAB Web App Server. |
 
 
 # FAQ
