@@ -89,21 +89,21 @@ resource group.
 ### Resources
 | Resource Name                                                              | Resource Name in Azure  | Number of Resources | Description                                                                                                                                                                                                                                                                                                                        |
 |----------------------------------------------------------------------------|-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TBD |  `app-gw-sg` | 1 | TBD |
-| TBD |  `appGw-public-ip` | 1 | TBD |
-| Application gateway | `appGw<uniqueID>`    | 1                   | Provides routing and load balancing service to MATLAB Web App Server instances.|
-| TBD | `netlm-nsg`        | 1                   | TBD |
-| TBD | `netlm-server`        | 1                   | TBD |
-| TBD |  `netlm-server-ip` | 1 | TBD |
-| TBD |  `netlm-server-nic` | 1 | TBD |
-| TBD |  `netlm-server_OsDisk_<uniqueID>` | 1 | TBD |
+| Application Gateway Network Security Group |  `app-gw-sg` | 1 | TBD |
+| Application Gateway Public IP |  `appGw-public-ip` | 1 | TBD |
+| Application Gateway | `appGw<uniqueID>`    | 1                   | Provides routing and load balancing service to MATLAB Web App Server instances.|
+| Network License Manager Network Security Group | `netlm-nsg`        | 1                   | TBD |
+| Network License Manager | `netlm-server`        | 1                   | TBD |
+| Network License Manager Public IP |  `netlm-server-ip` | 1 | TBD |
+| Network License Manager NIC |  `netlm-server-nic` | 1 | TBD |
+| Network License Manager OS Disk |  `netlm-server_OsDisk_<uniqueID>` | 1 | TBD |
 | MATLAB Web App Server Public IP                           | `servermachine-public-ip` | 1                   | Public IP address to connect to MATLAB Web App Server. |
-| Virtual network                                                           | `webapp-refarch-vnet`   | 1                   | Enables resources to communicate with each other. |
-| TBD |  `webapp-sg-temp` | 1 | TBD |
-| TBD |  `webappNic` | 1 | TBD |
+| Virtual Network                                                           | `webapp-refarch-vnet`   | 1                   | Enables resources to communicate with each other. |
+| MATLAB Web App Server Network Security Group |  `webapp-sg-temp` | 1 | TBD |
+| MATLAB Web App Server NIC |  `webappNic` | 1 | TBD |
 | Storage account                                                            | `webapps<uniqueID>`   | 1                  | Storage account where the deployable archives (CTF files) are stored. |
-| TBD | `webappVM`           | 1                   | Virtual machine (VM) that hosts MATLAB Web App Server.|
-| TBD |  `webappVM_OsDisk_<uniqueID>` | 1 | TBD |
+| MATLAB Web App Server Virtual Machine | `webappVM`           | 1                   | Virtual machine (VM) that hosts MATLAB Web App Server.|
+| MATLAB Web App Server OS Disk |  `webappVM_OsDisk_<uniqueID>` | 1 | TBD |
 
 
 # FAQ
