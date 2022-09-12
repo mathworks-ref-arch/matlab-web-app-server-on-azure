@@ -25,7 +25,7 @@ Deploying MATLAB Web App Server on Azure automatically deploys a network license
 Click the **Deploy to Azure** button to deploy resources on
     Azure. This will open the Azure Portal in your web browser.
 
- <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fmwappdeployment.blob.core.windows.net%2Fwebappserver-artifacts-r2022a%2FmainTemplate.json%3Fsv%3D2020-04-08%26st%3D2022-09-07T14%253A41%253A12Z%26se%3D2023-09-08T14%253A41%253A00Z%26sr%3Db%26sp%3Dr%26sig%3Dss8AmwD8NTxSGjyCNe2xs3UWd3IkfJ7ryavIDgGQjHc%253D"  target ="_blank" >  <img  src ="/source/images/deploybutton.png" />  </a>
+ <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fmwappdeployment.blob.core.windows.net%2Fwebappserver-artifacts-r2022a%2FmainTemplate.json%3Fsv%3D2020-04-08%26st%3D2022-09-07T14%253A41%253A12Z%26se%3D2023-09-08T14%253A41%253A00Z%26sr%3Db%26sp%3Dr%26sig%3Dss8AmwD8NTxSGjyCNe2xs3UWd3IkfJ7ryavIDgGQjHc%253D"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
 
 > MATLAB Release: R2022a
 
