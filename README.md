@@ -100,6 +100,12 @@ resource group.
 | `webapp-vm`           | Virtual machine | Virtual machine to host MATLAB Web App Server.|
 |  `webappVM_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting MATLAB Web App Server. |
 
+# Get Network License Manager MAC Address
+>**NOTE:**The network license manager MAC address is available only after the deployment to the cloud is complete.
+To get the MAC address of the network license manager:
+1. Log in to the Network License Manager for MATLAB dashboard.
+1. Click Administration > License.
+1. Copy the license server MAC address displayed at the top.
 
 # FAQ
 ## How do I deploy to an existing virtual network?
