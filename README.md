@@ -44,7 +44,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Server VM Instance Size** | Specify the size of the VM you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM and each instance will run multiple workers. We recommend you choose a VM size where the number of cores on your VM match the number of MATLAB workers per VM you plan on using. The template defaults to: `Standard_D4s_v3`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D4s_v3`</p> |
 | **Operating System**| Choose the operating system for the server. Your options are `Windows` or `Linux`. |
 |**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the ports listed in [below](#how-do-i-deploy-to-an-existing-virtual-network) are opened. You can close ports 22 and 3389 after deployment is complete. |
-| **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the virtual network where the server will be deployed.<ul><li>If deploying to a new virtual network, a new virtual network is created with this name.</li><li>If deploying to an existing virtual network, this name must match the name of an existing virtual network. For example: `webappserver-vnet`.</li></ul> |
+| **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the virtual network where the server will be deployed.<ul><li>If deploying to a new virtual network, you can use the default `webapp-refarch-vnet` name or specify a new name for the virtual network.</li><li>If deploying to an existing virtual network, the name you specify must match the name of an existing virtual network.</li></ul> |
 | **Resource Group Name of Virtual Network** | <ul><li>If deploying to a new virtual network, leave the default `resourceGroup().name` value unchanged.</li><li>If deploying to an existing virtual network, specify the name of the resource group containing the existing existing virtual network. For example: `webappserver_rsg`.</li></ul> |
 | **Virtual Network CIDR Range** |  Specify the virtual network CIDR range. For example: `10.0.0.0/16` .<ul><li>If deploying to a new virtual network, specify a suitable CIDR range to be used for the new virtual network.</li><li>If deploying to an existing virtual network, this must match the CIDR range of the existing virtual network.</li></ul> |
 | **Name of Subnet for MATLAB Web App Server** | Specify the name of the subnet that the server can use.<ul><li>If deploying to a new virtual network, this specifies the name of the subnet to be created in the virtual network.</li><li>If deploying to an existing virtual network, this must match the name of a subnet in the existing virtual network.</li></ul> |
@@ -66,7 +66,7 @@ Click **Create** to begin the deployment. This can take up to 10 minutes.
     groups** and select the resource group containing your cluster resources.
 1. Select **Deployments** from the left pane and click **Microsoft.Template**.
 1. Click **Outputs**. Copy the parameter value for **networkLicenseManagerURL** and paste it in a browser.
-1. Log in using the password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
+1. Log in using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
 1. Follow the instructions in the Network License Manager for MATLAB dashboard to upload your MATLAB Web App Server license.
 
 
@@ -103,7 +103,7 @@ resource group.
 # Get Network License Manager MAC Address
 >**NOTE:**The network license manager MAC address is available only after the deployment to the cloud is complete.
 To get the MAC address of the network license manager:
-1. Log in to the Network License Manager for MATLAB dashboard.
+1. Log in to the Network License Manager for MATLAB dashboard using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
 1. Click Administration > License.
 1. Copy the license server MAC address displayed at the top.
 
