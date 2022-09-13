@@ -78,6 +78,24 @@ You are now ready to use MATLAB Web App Server on Azure.
 
 To run applications on MATLAB Web App Server, you need to create applications using MATLAB Compiler. For more information, see [Create Web App](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler documentation.
 
+# Get Network License Manager MAC Address
+>**NOTE:**The network license manager MAC address is available only after the deployment to the cloud is complete.
+To get the MAC address of the network license manager:
+1. Log in to the Network License Manager for MATLAB dashboard using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
+1. Click Administration > License.
+1. Copy the license server MAC address displayed at the top.
+
+# Upload Apps
+1. Select the `webapp<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
+1. Select `File shares` from the left navigation pane under the `Data storage` category.
+1. Select the `webapps` file share and click the `ctfs` folder.
+1. Click `Upload` to browse and upload your app by following the prompts.
+
+# View Log Files
+1. Select the `webapp<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
+1. Select `File shares` from the left navigation pane under the `Data storage` category.
+1. Select the `webapps` file share and click the `logs` folder to view the logs.
+
 # Architecture and Resources
 Deploying this reference architecture will create several resources in your
 resource group.
@@ -98,12 +116,6 @@ resource group.
 | `webapp-vm`           | Virtual machine | Virtual machine to host MATLAB Web App Server.|
 |  `webappVM_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting MATLAB Web App Server. |
 
-# Get Network License Manager MAC Address
->**NOTE:**The network license manager MAC address is available only after the deployment to the cloud is complete.
-To get the MAC address of the network license manager:
-1. Log in to the Network License Manager for MATLAB dashboard using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
-1. Click Administration > License.
-1. Copy the license server MAC address displayed at the top.
 
 # FAQ
 ## How do I deploy to an existing virtual network?
