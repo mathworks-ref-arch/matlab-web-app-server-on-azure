@@ -126,7 +126,6 @@ To get the MAC address of the network license manager:
 
 | Port | Description |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `80` | HTTP - the port Web App Server will service if SSL is not enabled |
 | `443` | HTTPS - the port Web App Server will service if SSL is enabled |
 | `22` | SSH - used for remoting into Linux machines |
 | `3389` | RDP - used for remoting into Windows machines |
