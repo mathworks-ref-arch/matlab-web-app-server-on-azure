@@ -28,8 +28,6 @@ Click the **Deploy to Azure** button to deploy resources on
  <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fmwappdeployment.blob.core.windows.net%2Fwebappserver-artifacts-r2022a%2FmainTemplate.json%3Fsv%3D2020-04-08%26st%3D2022-09-07T14%253A41%253A12Z%26se%3D2023-09-08T14%253A41%253A00Z%26sr%3Db%26sp%3Dr%26sig%3Dss8AmwD8NTxSGjyCNe2xs3UWd3IkfJ7ryavIDgGQjHc%253D"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
 
 > MATLAB Release: R2022a
-
-
 <!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
 <p><strong>Note:</strong> Creating resources on Azure can take up to 10 minutes.</p>
 
@@ -131,23 +129,18 @@ To get the MAC address of the network license manager:
 | `3389` | RDP - used for remoting into Windows machines |
 | `27000` | Required for communication between network license manager and Web App Server |
 
+## How do I configure OIDC authentication?
+1. To use OIDC authentication on the server, you need to register with an IdP such as Microsoft® Azure® AD, or Google® Identity Platform. MATLAB Web App Server must be registered as an application with the IdP.
+1. During the registration process, you need a redirect URL for MATLAB Web App Server. The format of the URL is: `https://<MATLABWebAppServer_hostname>:<port_server_is_running_on>/webapps/extauth/callback`. For example: `https://example.com:9988/webapps/extauth/callback`.
+1. Create a file named `webapps_authn.json` using the JSON schema specified [here](https://www.mathworks.com/help/webappserver/ug/authentication.html#mw_908077ba-725e-4cc9-a906-a1bf29fceaf8) and place it in the `webapps_private` folder of the server. For folder location, see the [doc](https://www.mathworks.com/help/webappserver/ug/authentication.html#mw_146e67b0-5dff-4310-8d5d-544250e931a9).
+1. To place the `webapps_authn.json` file in the `webapps_private` folder of the server, you need to remotely connect to the server using RDP on Windows or SCP on Linux. Once connected, you can drag-and-drop the `webapps_authn.json` file you created into `webapps_private` folder of the server. Alternatively, you can drop the file into the file share first, before moving it to the `webapps_private` folder.
+1. Restart the server by executing `webapps-restart` from a terminal on the the server machine. The `webapps-restart` command is located in the `script` folder within the default installation location. For default location, see the [doc](https://www.mathworks.com/help/webappserver/ug/set-up-matlab-web-app-server.html#responsive_offcanvas).
 
 ## What versions of MATLAB Runtime are supported?
 
 | Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime |
 |----------------|----------------|----------------|----------------|----------------|----------------|----------------|----------------|-----------------|---------------|
 | MATLAB R2022a |  |  |  | R2019b | R2020a | R2020b |R2021a | R2021b | R2022a |
-
-
-## Why do requests to the server fail with errors such as “untrusted certificate” or “security exception”?  
-
-These errors result from either CORS not being enabled on the server or due to the fact that the server endpoint uses a self-signed 
-certificate. 
-
-If you are making an AJAX request to the server, make sure that CORS is enabled in the server configuration. You can enable CORS by editing the property `--cors-allowed-origins` in the config file. For more information, see [Edit the Server Configuration](http://www.mathworks.com/help/mps/server/use-matlab-Web App-server-cloud-dashboard-on-azure-reference-architecture.html#mw_d9c9b367-376f-4b31-a97e-ed894abfcbbe).
-
-Also, some HTTP libraries and Javascript AJAX calls will reject a request originating from a server that uses a self-signed certificate. You may need to manually override the default security behavior of the client application. Or you can add a new 
-HTTP/HTTPS endpoint to the application gateway. For more information, see [Change SSL Certificate to Application Gateway](https://www.mathworks.com/help/mps/server/configure-azure-resources-reference-architecture.html#mw_6ae700e7-b895-4e90-b0fb-7292e905656e_sep_mw_1fd15ea2-d161-4694-963d-41a81fc773bf). 
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: 
