@@ -169,12 +169,12 @@
     "privateKeyFile": "[if(equals(variables('enableSSL'), 'Yes'), parameters('Base64 Encoded SSL Private Key'), 'NONE')]",
     "windowsCommand": "[concat('powershell -ExecutionPolicy Unrestricted -File initWindows.ps1 -storageAccountName ', variables('storageAccountName'), ' -resourceGroup ', resourceGroup().name, ' -subscriptionID ', subscription().subscriptionId, ' -enableSSL ', variables('enableSSL'), ' -certFile ', variables('certFile'), ' -privateKeyFile ', variables('privateKeyFile'))]",
     "linuxCommand": "[concat('sudo bash ./initLinux.sh -n ', variables('storageAccountName'), ' -f ', resourceGroup().name, ' -k ', subscription().subscriptionId, ' -s ', variables('enableSSL'), ' -c ', variables('certFile'), ' -p ', variables('privateKeyFile'))]",
-    "windowsScriptURL": "https://joeywebapplambdaarchive.s3.amazonaws.com/initWindows.ps1",
-    "linuxScriptURL": "https://joeywebapplambdaarchive.s3.amazonaws.com/initLinux.sh",
+    "windowsScriptURL": "https://github.com/mathworks-ref-arch/matlab-web-app-server-on-azure/blob/main/releases/R2022a/scripts/initWindows.ps1",
+    "linuxScriptURL": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/main/releases/R2022a/scripts/initLinux.sh",
     "roleName": "[guid(resourceGroup().id, deployment().name)]",
     "contributor": "[resourceId('Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
     "deployNetworkLicenseManager": "[parameters('Deploy Network License Manager For MATLAB')]",
-    "flex-arm-template-link": "https://mwappdeployment.blob.core.windows.net/webappserver-artifacts-r2022a/azuredeploy-existing-vnet-R2022a.json?sv=2020-04-08&st=2022-08-30T00%3A35%3A03Z&se=2024-08-31T00%3A35%3A00Z&sr=b&sp=r&sig=rPq9maJ7jgY4aUsBJrecIQpFsl%2Fr1uznOfPflxiPuEg%3D",
+    "flex-arm-template-link": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/main/releases/R2022a/templates/azuredeploy-existing-vnet-R2022a.json",
     "flex-parameters": {
       "instanceType": {
         "value": "Standard_D2s_v3"
