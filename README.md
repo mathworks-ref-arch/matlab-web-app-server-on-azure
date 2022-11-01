@@ -141,6 +141,15 @@ resource group.
 | `3389` | RDP - used for remoting into Windows machines |
 | `27000` | Required for communication between network license manager and Web App Server |
 
+
+
+## How do I launch a template that uses a previous MATLAB release?
+You may use one of the deploy buttons below to deploy an older release of MATLAB Web App Server Reference Architecture. Note that the operating system is a parameter of the ARM template.
+| Release | Windows Server / Ubuntu                                                                 
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| R2022a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
+
+
 ## How do I configure OIDC authentication?
 1. To use OIDC authentication on the server, you need to register with an IdP such as Microsoft® Azure® AD, or Google® Identity Platform. MATLAB Web App Server must be registered as an application with the IdP.
 1. During the registration process, you need a redirect URL for MATLAB Web App Server. The format of the URL is: `https://<MATLABWebAppServer_hostname>:<port_server_is_running_on>/webapps/extauth/callback`. For example: `https://example.com:9988/webapps/extauth/callback`.
