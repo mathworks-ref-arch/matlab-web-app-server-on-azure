@@ -150,10 +150,10 @@ resource group.
 
 ## What versions of MATLAB Runtime are supported?
 
-| Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime |
-|----------------|----------------|----------------|----------------|----------------|----------------|----------------|----------------|-----------------|
-| MATLAB R2022b |  R2019b | R2020a | R2020b |R2021a | R2021b | R2022a | |
-| MATLAB R2022a | | R2019b | R2020a | R2020b |R2021a | R2021b | R2022a | R2022b |
+| Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | 
+|----------------|----------------|----------------|----------------|----------------|----------------|----------------|----------------|
+| MATLAB R2022b | | R2020a | R2020b |R2021a | R2021b | R2022a | R2022b |
+| MATLAB R2022a | R2019b | R2020a | R2020b |R2021a | R2021b | R2022a | |
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: 
