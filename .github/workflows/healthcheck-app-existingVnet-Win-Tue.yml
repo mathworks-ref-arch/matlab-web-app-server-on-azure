@@ -1,9 +1,9 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information, see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-# The following workflow file triggers the Existing Virtual Network deployment test "test_healthcheck_existing_vnet.py" every Tuesday with platform as "Windows" in "westeurope" region.
+# The following workflow file triggers the Existing Virtual Network deployment test "test_refarch_existing.py" every Tuesday with platform as "Windows" in "westeurope" region.
 
-name: MATLAB Production Server Ref Arch Azure Existing Virtual Network Health Check Test on Windows in West Eu
+name: MATLAB Web App Server Ref Arch Azure Existing Virtual Network Health Check Test on Windows in West Eu
 
 on:
  schedule:
