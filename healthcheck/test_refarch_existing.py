@@ -30,10 +30,8 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         # Subnets & virtual network info
         subnets_cidr = ['10.0.0.0/24']
         vnet_cidr = '10.0.0.0/16'
-
         # Resource group where virtual network is created
         resource_name_vnet = 'vnet_resource_group'
-
         # Deploy a resource group with a virtual network and specified number of subnets
         try:
             subnet_name, vnet_name = DeployOp.create_vnet(credentials,
@@ -42,7 +40,6 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
                                                             subnets_cidr,
                                                             resource_name_vnet,
                                                             vnet_cidr)
-
         except Exception as e:
             raise(e)
         print(subnet_name[0])
