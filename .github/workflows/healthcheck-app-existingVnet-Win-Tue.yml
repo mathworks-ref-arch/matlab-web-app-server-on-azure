@@ -33,5 +33,5 @@ jobs:
     - name: MWAS ref Arch Existing Virtual Network Health check test on Windows in West Eu
       run: |
         cd healthcheck
-        python test_refarch_existing.py ${{ secrets.TenantId }} ${{ secrets.ClientId }} ${{ secrets.ClientSecret }} ${{ secrets.SubscriptionId }} ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.ipaddress }} ${{ secrets.sslcertificate }} ${{ secrets.sslkey }} "westeurope" "Windows"
+        python test_refarch_existing.py ${{ secrets.TenantId }} ${{ secrets.ClientId }} ${{ secrets.ClientSecret }} ${{ secrets.SubscriptionId }} ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.ipaddress }} ${{ secrets.sslcertificate }} ${{ secrets.sslkey }} "westeurope" "Windows" "True"
 
