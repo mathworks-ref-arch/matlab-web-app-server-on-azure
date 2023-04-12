@@ -1,0 +1,38 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information, see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+# The following workflow file triggers the New Virtual Network deployment test "test_refarch_new" every Monday with platform as "Windows" in "eastus" region.
+
+name: MATLAB Web App Server Ref Arch Azure Health Check Test on Windows in East US region
+
+on:
+ push:
+ schedule:
+    - cron: '0 16 * * 1'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        pip install -r ./healthcheck/requirements.txt
+       
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Web App ref Arch New Virtual Network Health check test on Windows in East US region
+      run: |
+        cd healthcheck
+        python test_refarch_new.py ${{ secrets.TenantId }} ${{ secrets.ClientId }} ${{ secrets.ClientSecret }} ${{ secrets.SubscriptionId }} ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.ipaddress }} ${{ secrets.sslcertificate }} ${{ secrets.sslkey }} "eastus" "Windows"
+
