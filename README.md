@@ -1,6 +1,6 @@
 # MATLAB Web App Server on Microsoft Azure
 
-# Requirements
+# Requirement
 
 Before starting, you need the following:
 
