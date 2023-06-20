@@ -1,6 +1,6 @@
 # MATLAB Web App Server on Microsoft Azure
 
-# Requirement
+# Requirements
 
 Before starting, you need the following:
 
@@ -25,9 +25,9 @@ Deploying MATLAB Web App Server on Azure automatically deploys a network license
 Click the **Deploy to Azure** button to deploy resources on
     Azure. This will open the Azure Portal in your web browser.
 
- <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022b%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
+ <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fstaging-doc%2Freleases%2FR2023a%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
 
-> MATLAB Release: R2022b
+> MATLAB Release: R2023a
 <!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
 <p><strong>Note:</strong> Creating resources on Azure can take up to 10 minutes.</p>
 
@@ -39,7 +39,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Subscription**            | Choose an Azure subscription to use for purchasing resources.<p><em>Example:</em> `VERTHAM Dev`</p>|
 | **Resource group**          | Choose a name for the resource group that will hold the resources. <p><em>Example:</em> `Saveros`</p>|
 | **Region**                | Choose the region to start resources in. Ensure that you select a location which supports your requested instance types. To check which services are supported in each location, see [Azure Region Services](<https://azure.microsoft.com/en-gb/regions/services/>). <p><em>Example:</em> `East US`</p> |
-| **Server VM Instance Size** | Specify the size of the VM you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM and each instance will run multiple workers. We recommend you choose a VM size where the number of cores on your VM match the number of MATLAB workers per VM you plan on using. The template defaults to: `Standard_D4s_v3`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D4s_v3`</p> |
+| **Server VM Instance Size** | Specify the size of the VM you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM and each instance will run multiple workers. We recommend you choose a VM size where the number of cores on your VM match the number of MATLAB workers per VM you plan on using. The template defaults to: `Standard_D4_v3`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D4_v3`</p> |
 | **Operating System**| Choose the operating system for the server. Your options are `Windows` or `Linux`. |
 |**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the ports listed in [below](#how-do-i-deploy-to-an-existing-virtual-network) are opened. Depending on your security requirements, you can choose to close ports 22 and 3389 after the deployment is complete. |
 | **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the virtual network where the server will be deployed.<ul><li>If deploying to a new virtual network, you can use the default `webapp-refarch-vnet` name or specify a new name for the virtual network.</li><li>If deploying to an existing virtual network, the name you specify must match the name of an existing virtual network.</li></ul> |
@@ -54,7 +54,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Base64 Encoded SSL Certificate** |   Enter a string that is a base64-encoded value of an SSL certificate in PEM format. You can Base64 encode a PEM file using the following command in either a Windows or Linux terminal: <p> ```base64 -w 0 "cert.pem" > "cert.txt"``` </p> You may need to change the filename arguments accordingly. The contents of the output file (here "cert.txt") should be used for this parameter. <p><strong>NOTE:</strong><ul><li>MATLAB Web App Server only supports the `.pem` SSL certificate format.</li><li>SSL keys must be 2048 bits in length and must be private.</li><li>Intermediate certificates are not supported by the server.</li><li>Private key should not be password protected.</li></ul>|
 | **Base64 Encoded SSL Private Key** |   Enter a string that is a base64-encoded value of an SSL private key file in PEM format. You can Base64 encode a PEM file using the following command in either a Windows or Linux terminal: <p> ```base64 -w 0 "key.pem" > "key.txt"``` </p> You may need to change the filename arguments accordingly. The contents of the output file (here "key.txt") should be used for this parameter. |
 | **Username to Remote into Server VM** | Specify a username to use when remoting into server VM hosting MATLAB Web App Server. The username must be at least 7 characters long. This username is also used to login to the network license manager portal. For example: webappadmin. You cannot use "admin" as a username. |
-| **Password to Remote into Server VM and Network License Manager Web Interface** | Specify a password to use when remoting into server VM hosting MATLAB Web App Server. This password is also used to login to the network license manager portal. |
+| **Password to Remote into Server VM and Network License Manager Web Interface** | Specify a password to use when remoting into server VM hosting MATLAB Web App Server. This password is also used to login to the network license manager portal. Password requirements are: <p><ul><li>Must be between 12-123 characters.</li><li>Have uppercase and lowercase characters.</li><li>Have a digit.</li><li>Have a special character.</li></ul> |
 | **Deploy Network License Manager** | Select whether you want to deploy the Network License Manager for MATLAB to manage your license files. Selecting 'Yes' deploys the Network License Manager for MATLAB reference architecture. Select 'No' if you want to use an existing license manager. When using an exisiting license manager, the MATLAB Web App Server deployment and the license manager must be in the same virtual network.|
 
 Click **Create** to begin the deployment. This can take up to 10 minutes.
@@ -147,7 +147,8 @@ resource group.
 You may use one of the deploy buttons below to deploy an older release of MATLAB Web App Server Reference Architecture. Note that the operating system is a parameter of the ARM template.
 | Release | Windows Server / Ubuntu                                                                 
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R2022a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
+| R2022b  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fstaging-doc%2Freleases%2FR2022b%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
+| R2022a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fstaging-doc%2Freleases%2FR2022a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
 
 
 ## How do I configure OIDC authentication?
@@ -159,10 +160,11 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 
 ## What versions of MATLAB Runtime are supported?
 
-| Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | 
-|----------------|----------------|----------------|----------------|----------------|----------------|----------------|----------------|
-| MATLAB R2022b | | R2020a | R2020b |R2021a | R2021b | R2022a | R2022b |
-| MATLAB R2022a | R2019b | R2020a | R2020b |R2021a | R2021b | R2022a | |
+| Release | MATLAB Runtime |
+|---------------|----------------|
+| MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
+| MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |  
+| MATLAB R2022a |  R2019b, R2020a, R2020b, R2021a, R2021b, R2022a |    
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: 
