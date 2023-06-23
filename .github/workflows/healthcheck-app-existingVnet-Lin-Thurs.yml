@@ -30,7 +30,7 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: MWAS ref Arch Existing Virtual Network Health check test on linux in Japan East
+    - name: MWAS ref Arch Existing Virtual Network Health check test on linux in Japan East.
       run: |
         cd healthcheck
         python test_refarch_existing.py ${{ secrets.TenantId }} ${{ secrets.ClientId }} ${{ secrets.ClientSecret }} ${{ secrets.SubscriptionId }} ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.ipaddress }} ${{ secrets.sslcertificate }} ${{ secrets.sslkey }} "japaneast" "Linux" "True"
