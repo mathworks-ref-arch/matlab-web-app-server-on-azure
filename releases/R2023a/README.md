@@ -86,15 +86,28 @@ To get the MAC address of the network license manager:
 1. Copy the license server MAC address displayed at the top.
 
 # Upload Apps
-1. Select the `webapp<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
+## Upload from Azure Portal
+1. Select the `appstorage<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
 1. Select `File shares` from the left navigation pane under the `Data storage` category.
-1. Select the `webapps` file share and click the `ctfs` folder.
+1. Select the `webapps` file share.
+1. Select `Browse` from the left navigation pane. You see two folders: `apps` and `logs`.
+1. Click the `apps` folder.
 1. Click `Upload` to browse and upload your app by following the prompts.
+## Upload by Remoting into Server VM
+1. Remotely connect to the server VM. For details, see [How do I remotely connect to the server virtual machine?](#how-do-i-remotely-connect-to-the-server-virtual-machine).
+1. Open File Explorer and select `This PC`.
+1. Double-click the `Disconnected Network Drive (W:)` to open it.
+1. Double-click the `apps` folder.
+1. Copy your app to this folder.
+
+**Note**: `Disconnected Network Drive (W:)` is mapped to: `\\appstorage<uniqueID>.file.core.windows.net\webapps\apps`.
 
 # View Log Files
-1. Select the `webapp<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
+1. Select the `appstorage<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
 1. Select `File shares` from the left navigation pane under the `Data storage` category.
-1. Select the `webapps` file share and click the `logs` folder to view the logs.
+1. Select the `webapps` file share.
+1. Select `Browse` from the left navigation pane. You see two folders: `apps` and `logs`.
+1. Click the `logs` folder to view the logs.
 
 # Architecture and Resources
 Deploying this reference architecture will create several resources in your
@@ -112,7 +125,7 @@ resource group.
 | `webapp-refarch-vnet`   | Virtual network | Enable resources to communicate with each other via network. |
 |  `webapp-nsg` | Network security group | Filter network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
 |  `webapp-nic` | Network interface | Provide network interface for MATLAB Web App Server. |
-| `webapps<uniqueID>`   | Storage account | Storage account where web app archives (.ctf files) are stored. |
+| `appstorage<uniqueID>`   | Storage account | Storage account where web app archives (.ctf files) and logs are stored. |
 | `webapp-vm`           | Virtual machine | Virtual machine to host MATLAB Web App Server.|
 |  `webappVM_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting MATLAB Web App Server. |
 
@@ -165,6 +178,15 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 | MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
 | MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |  
 | MATLAB R2022a |  R2019b, R2020a, R2020b, R2021a, R2021b, R2022a |    
+
+## How do I remotely connect to the server virtual machine?
+1. Select the `webapp-vm` virtual machine resource from the resource group where MATLAB Web App Server was deployed.
+1. Select `Connect` from the top navigation pane.
+1. Select `RDP` from the drop-down menu.
+1. In the IP address field, select the public IP address of the virtual machine. Leave the port as 3389.
+1. Click `Download RDP File` and open the file.
+1. Double-click the downloaded file to connect to the virtual machine.
+1. Log in using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: 
