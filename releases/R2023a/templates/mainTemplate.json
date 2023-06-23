@@ -134,13 +134,7 @@
   },
   "variables": {
     "providerID": "D36A3EDC-0566-4EE4-86D3-64F20D2DDA06",
-    "location":{
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]",
-      "metadata": {
-        "description": "Location for the resources."
-      }
-    },
+    "location":"[resourceGroup().location]",
     "vmName": "webapp-vm",
     "usePublicIPAddresses": "[parameters('Assign Public IP Address to VM Hosting MATLAB Web App Server')]",
     "addressPrefix": "[parameters('Virtual Network CIDR Range')]",
@@ -175,7 +169,7 @@
     "privateKeyFile": "[if(equals(variables('enableSSL'), 'Yes'), parameters('Base64 Encoded SSL Private Key'), 'NONE')]",
     "windowsCommand": "[concat('powershell -ExecutionPolicy Unrestricted -File initWindows.ps1 -storageAccountName ', variables('storageAccountName'), ' -resourceGroup ', resourceGroup().name, ' -subscriptionID ', subscription().subscriptionId, ' -enableSSL ', variables('enableSSL'), ' -certFile ', variables('certFile'), ' -privateKeyFile ', variables('privateKeyFile'))]",
     "linuxCommand": "[concat('sudo bash ./initLinux.sh -n ', variables('storageAccountName'), ' -f ', resourceGroup().name, ' -k ', subscription().subscriptionId, ' -s ', variables('enableSSL'), ' -c ', variables('certFile'), ' -p ', variables('privateKeyFile'))]",
-    "windowsScriptURL": "https://github.com/mathworks-ref-arch/matlab-web-app-server-on-azure/blob/staging-doc/releases/R2023a/scripts/initWindows.ps1",
+    "windowsScriptURL": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/staging-doc/releases/R2023a/scripts/initWindows.ps1",
     "linuxScriptURL": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/staging-doc/releases/R2023a/scripts/initLinux.sh",
     "roleName": "[guid(resourceGroup().id, deployment().name)]",
     "contributor": "[resourceId('Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
