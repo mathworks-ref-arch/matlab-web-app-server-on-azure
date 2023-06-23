@@ -96,11 +96,11 @@ To get the MAC address of the network license manager:
 ## Upload by Remoting into Server VM
 1. Remotely connect to the server VM. For details, see [How do I remotely connect to the server virtual machine?](#how-do-i-remotely-connect-to-the-server-virtual-machine).
 1. Open File Explorer and select `This PC`.
-1. Double-click the `Disconnected Network Drive (W:)` to open it.
+1. Double-click `Network Drive (W:)` to open it.
 1. Double-click the `apps` folder.
 1. Copy your app to this folder.
 
-**Note**: `Disconnected Network Drive (W:)` is mapped to: `\\appstorage<uniqueID>.file.core.windows.net\webapps\apps`.
+**Note**: `Network Drive (W:)` is mapped to: `\\appstorage<uniqueID>.file.core.windows.net\webapps`.
 
 # View Log Files
 1. Select the `appstorage<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
