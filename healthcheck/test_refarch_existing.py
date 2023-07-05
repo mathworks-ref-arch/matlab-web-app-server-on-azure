@@ -45,7 +45,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         print(subnet_name[0])
     # Parameters for deployment
     parameters = {
-        "IP Addresses Permitted to Remote into Server VM in CIDR Notation": "0.0.0.0/0",
+        "IP Addresses Permitted to Remote into Server VM in CIDR Notation": ipAddress,
         "IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page in CIDR Notation": ipAddress,
         "Base64 Encoded SSL Certificate": sslCertificate,
         "Base64 Encoded SSL Private Key": sslPrivateKey,
@@ -96,12 +96,19 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
          if existingVPC:
             # Delete the deployment which is deployed using existing virtual network
             deployment_deletion = DeployOp.delete_resourcegroup(credentials, subscription_id, resource_group_name)
-            print("Deleted the deployment which is deployed using existing virtual network")
+            ct = datetime.datetime.now()
+            print("Deleted the deployment which is deployed using existing virtual network:-",ct)
             # Wait for above deployment deletion
             time.sleep(900)
             # Delete deployment with virtual network
             DeployOp.delete_resourcegroup(credentials, subscription_id, resource_name_vnet)
-            print("Deleted the deployment which contains the virtual network")
+            ct = datetime.datetime.now()
+            print("Deleted the deployment which contains the virtual network:-",ct)
+         else:
+            # Delete the deployment
+            deployment_deletion = DeployOp.delete_resourcegroup(credentials, subscription_id, resource_group_name)
+            ct = datetime.datetime.now()
+            print("Date time after deployment and deletion of stack:-", ct)
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9], sys.argv[10], sys.argv[11], sys.argv[12])
