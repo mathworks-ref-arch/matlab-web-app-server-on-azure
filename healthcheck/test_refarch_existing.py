@@ -26,7 +26,8 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     subscription_id = subscription_id_arg
     location = location_arg
 
-    if existingVPC:
+    if existingVPC=='true':
+        print('yes')
         # Subnets & virtual network info
         subnets_cidr = ['10.0.0.0/24']
         vnet_cidr = '10.0.0.0/16'
@@ -53,7 +54,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         "Password to Remote into Server VM and Network License Manager Web Interface": password
     }
 
-    if existingVPC:
+    if existingVPC=='true':
         parameters.update({
             "Deploy to New or Existing Virtual Network": "existing",
             "Name of Virtual Network Where MATLAB Web App Server Will Be Deployed": vnet_name,
@@ -93,7 +94,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     except Exception as e:
         raise(e)
     finally:
-         if existingVPC:
+         if existingVPC=='true':
             # Delete the deployment which is deployed using existing virtual network
             deployment_deletion = DeployOp.delete_resourcegroup(credentials, subscription_id, resource_group_name)
             ct = datetime.datetime.now()
