@@ -29,8 +29,8 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     if existingVPC=='true':
         print('yes')
         # Subnets & virtual network info
-        subnets_cidr = ['10.0.0.0/24']
-        vnet_cidr = '10.0.0.0/16'
+        subnets_cidr = ['10.1.0.0/24']
+        vnet_cidr = '10.1.0.0/16'
         # Resource group where virtual network is created
         resource_name_vnet = 'vnet_resource_group'
         # Deploy a resource group with a virtual network and specified number of subnets
