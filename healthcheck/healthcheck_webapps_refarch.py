@@ -61,6 +61,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
             "Virtual Network CIDR Range": vnet_cidr,
             "Name of Subnet for MATLAB Web App Server": subnet_name[0],
             "Server Subnet CIDR Range": subnets_cidr[0],
+            "Specify Private IP Address to VM Hosting MATLAB Web App Server": '10.1.0.4',
             "Resource Group Name Of Virtual Network": resource_name_vnet,
             "Operating System": platform_arg
         })
