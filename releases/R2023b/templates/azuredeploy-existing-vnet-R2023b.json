@@ -60,8 +60,8 @@
     "serverMachineName": "[concat(take(variables('namingPrefix'), 8), '-server')]",
     "publisher": "mathworks-inc",
     "offer": "license-manager-ref-arch-win",
-    "sku": "license-manager-ref-arch-win-sku-r2023a",
-    "version": "1.0.0",
+    "sku": "license-manager-ref-arch-win-sku-r2023b",
+    "version": "latest",
     "imageReference": {
       "publisher": "[variables('publisher')]",
       "offer": "[variables('offer')]",
@@ -202,11 +202,7 @@
               "destinationAddressPrefix": "*",
               "access": "Allow",
               "priority": 1040,
-              "direction": "Inbound",
-              "sourcePortRanges": [],
-              "destinationPortRanges": [],
-              "sourceAddressPrefixes": [],
-              "destinationAddressPrefixes": []
+              "direction": "Inbound"
             }
           }
         ]
@@ -307,7 +303,7 @@
     {
       "name": "pid-3519fce2-01d2-4019-90dc-b6566eacbe89-partnercenter",
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2020-10-01",
+      "apiVersion": "2021-04-01",
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachines', variables('serverMachineName'))]"
       ],

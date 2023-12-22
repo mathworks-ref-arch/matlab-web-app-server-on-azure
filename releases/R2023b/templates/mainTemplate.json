@@ -174,7 +174,7 @@
     "roleName": "[guid(resourceGroup().id, deployment().name)]",
     "contributor": "[resourceId('Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
     "deployNetworkLicenseManager": "[parameters('Deploy Network License Manager For MATLAB')]",
-    "flex-arm-template-link": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/main/releases/R2023b/templates/azuredeploy-existing-vnet-R2023b.json",
+    "flex-arm-template-link": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/staging/releases/R2023b/templates/azuredeploy-existing-vnet-R2023b.json",
     "flex-parameters": {
       "instanceType": {
         "value": "Standard_D2s_v3"

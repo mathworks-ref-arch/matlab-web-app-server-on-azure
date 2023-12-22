@@ -31,8 +31,4 @@ rm $myPath
 #load json string into dynamic option file
 echo $JSONCMD >> $myPath
 
-#to allow web app server to listen on port 443
-sudo sysctl net.ipv4.ip_unprivileged_port_start=0
-
-#start controller
-node /MathWorks/controller/index.js &
+sudo systemctl start webappcontroller
