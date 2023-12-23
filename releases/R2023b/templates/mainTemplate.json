@@ -170,7 +170,7 @@
     "windowsCommand": "[concat('powershell -ExecutionPolicy Unrestricted -File initWindows.ps1 -storageAccountName ', variables('storageAccountName'), ' -resourceGroup ', resourceGroup().name, ' -subscriptionID ', subscription().subscriptionId, ' -enableSSL ', variables('enableSSL'), ' -certFile ', variables('certFile'), ' -privateKeyFile ', variables('privateKeyFile'))]",
     "linuxCommand": "[concat('sudo bash ./initLinux.sh -n ', variables('storageAccountName'), ' -f ', resourceGroup().name, ' -k ', subscription().subscriptionId, ' -s ', variables('enableSSL'), ' -c ', variables('certFile'), ' -p ', variables('privateKeyFile'))]",
     "windowsScriptURL": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/staging/releases/R2023b/scripts/initWindows.ps1",
-    "linuxScriptURL": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/staging/releases/R2023b/scripts/initLinux.sh",
+    "linuxScriptURL": "https://mwappdeployment.blob.core.windows.net/webappserver-artifacts-r2023b/initLinux.sh?sv=2021-10-04&spr=https%2Chttp&st=2023-12-23T01%3A53%3A36Z&se=2024-01-24T01%3A53%3A00Z&sr=b&sp=r&sig=Q5C1Prj89tqOnQwBrpRQKppuRAVtQX65HvJamtgqgwQ%3D",
     "roleName": "[guid(resourceGroup().id, deployment().name)]",
     "contributor": "[resourceId('Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
     "deployNetworkLicenseManager": "[parameters('Deploy Network License Manager For MATLAB')]",
