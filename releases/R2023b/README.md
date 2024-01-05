@@ -41,7 +41,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Region**                | Choose the region to start resources in. Ensure that you select a location which supports your requested instance types. To check which services are supported in each location, see [Azure Region Services](<https://azure.microsoft.com/en-gb/regions/services/>). <p><em>Example:</em> `East US`</p> |
 | **Server VM Instance Size** | Specify the size of the VM you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM and each instance will run multiple workers. We recommend you choose a VM size where the number of cores on your VM match the number of MATLAB workers per VM you plan on using. The template defaults to: `Standard_D4_v3`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D4_v3`</p> |
 | **Operating System**| Choose the operating system for the server. Your options are `Windows` or `Linux`. |
-|**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the ports listed [below](#how-do-i-deploy-to-an-existing-virtual-network) are opened. Depending on your security requirements, you can choose to close ports 22 and 3389 after the deployment is complete. |
+|**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the ports listed [below](#ports-to-open-in-existing-virtual-network) are opened. Depending on your security requirements, you can choose to close ports 22 and 3389 after the deployment is complete. |
 | **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the virtual network where the server will be deployed.<ul><li>If deploying to a new virtual network, you can use the default `webapp-refarch-vnet` name or specify a new name for the virtual network.</li><li>If deploying to an existing virtual network, the name you specify must match the name of an existing virtual network.</li></ul> |
 | **Resource Group Name of Virtual Network** | <ul><li>If deploying to a new virtual network, leave the default `resourceGroup().name` value unchanged.</li><li>If deploying to an existing virtual network, specify the name of the resource group containing the existing existing virtual network. For example: `webappserver_rsg`.</li></ul> |
 | **Virtual Network CIDR Range** |  Specify the virtual network CIDR range. For example: `10.0.0.0/16` .<ul><li>If deploying to a new virtual network, specify a suitable CIDR range to be used for the new virtual network.</li><li>If deploying to an existing virtual network, this must match the CIDR range of the existing virtual network.</li></ul> |
@@ -104,9 +104,9 @@ To get the MAC address of the network license manager:
 **Note**: `Network Drive (W:)` is mapped to: `\\appstorage<uniqueID>.file.core.windows.net\webapps`.
 
 ### Linux Virtual Machine
-1. Remotely connect to the server VM. For details, see [How do I remotely connect to the server virtual machine?](#how-do-i-remotely-connect-to-the-server-virtual-machine).
-1. Copy your app to the folder `/mnt/webapps/apps` using scp with the command format `scp <path/to/webapp> <username>@<virtualMachineIP>:/mnt/webapps/apps`.
-For example: `scp ./mywebapp.ctf webappadmin@192.168.1.1:/mnt/webapps/apps` 
+1. Obtain the public IP address of the server VM. For details, see [How do I remotely connect to the server virtual machine?](#how-do-i-remotely-connect-to-the-server-virtual-machine).
+1. From a local command shell, copy your app to the server VM in the folder `/mnt/webapps/apps` using SCP with the command format `scp <local/path/to/webapp> <username>@<virtualMachineIP>:/mnt/webapps/apps`. Authenticate using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
+For example: `scp ./mywebapp.ctf webappadmin@192.168.1.1:/mnt/webapps/apps`.
 
 # View Log Files
 1. Select the `appstorage<uniqueID>` storage account resource from the resource group where MATLAB Web App Server was deployed.
@@ -151,7 +151,7 @@ resource group.
 | **Server Subnet CIDR Range** |  Specify existing virtual network subnet CIDR range. |
 | **Specify Private IP Address to VM Hosting MATLAB Web App Server** |   Specify a private IP address to the VM hosting the server. For example: 10.0.0.4 . |
 
-**Ports to Open in Existing Virtual Network**
+### **Ports to Open in Existing Virtual Network**
 
 | Port | Description |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -168,7 +168,7 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | R2023a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2023a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
 | R2022b  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022b%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
-
+| R2022a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
 
 ## How do I configure OIDC authentication?
 1. To use OIDC authentication on the server, you need to register with an IdP such as Microsoft® Azure® AD, or Google® Identity Platform. MATLAB Web App Server must be registered as an application with the IdP.
@@ -184,7 +184,8 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 | MATLAB R2023b |  R2021a, R2021b, R2022a, R2022b, R2023a, R2023b |
 | MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
 | MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |
-
+| MATLAB R2022a |  R2019b, R2020a, R2020b, R2021a, R2021b, R2022a |
+	
 ## How do I remotely connect to the server virtual machine?
 ### Windows Virtual Machine
 1. Select the `webapp-vm` virtual machine resource from the resource group where MATLAB Web App Server was deployed.
@@ -197,9 +198,7 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 ### Linux Virtual Machine
 1. Select the `webapp-vm` virtual machine resource from the resource group where MATLAB Web App Server was deployed.
 1. Select `Connect` from the top navigation pane.
-1. Select `ssh` from the drop-down menu.
-1. In the terminal, enter `ssh <username>@<virtualMachineIP>`
-1. Log in using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
+1. Select `Native SSH`. Follow the instructions to connect to the virtual machine.
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: 
