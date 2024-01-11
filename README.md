@@ -122,11 +122,6 @@ resource group.
 ### Resources
 | Resource Name  | Type | Description                                                                                                                                                                                                                                                                                                                        |
 |-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `netlm-nsg`        | Network security group | Filter network traffic to and from network license manager resources in an Azure virtual network. |
-| `netlm-server`        | Virtual machine  | Virtual machine to host network license manager. |
-|  `netlm-server-ip` | Public IP address | Provide public IP address to network license manager. |
-|  `netlm-server-nic` | Network interface | Provide network interface for network license manager. |
-|  `netlm-server_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting network license manager. |
 | `webapp-public-ip` | Public IP address | Public IP address to connect to MATLAB Web App Server. |
 | `webapp-refarch-vnet`   | Virtual network | Enable resources to communicate with each other via network. |
 |  `webapp-nsg` | Network security group | Filter network traffic to and from MATLAB Web App Server resources in an Azure virtual network. |
@@ -134,6 +129,14 @@ resource group.
 | `appstorage<uniqueID>`   | Storage account | Storage account where web app archives (.ctf files) and logs are stored. |
 | `webapp-vm`           | Virtual machine | Virtual machine to host MATLAB Web App Server.|
 |  `webappVM_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting MATLAB Web App Server. |
+If you are deploying a new network license manager, the following resources will also be created in your resource group.
+| Resource Name  | Type | Description                                                                                                                                                                                                                                                                                                                        |
+|-------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `netlm-nsg`        | Network security group | Filter network traffic to and from network license manager resources in an Azure virtual network. |
+| `netlm-server`        | Virtual machine  | Virtual machine to host network license manager. |
+|  `netlm-server-ip` | Public IP address | Provide public IP address to network license manager. |
+|  `netlm-server-nic` | Network interface | Provide network interface for network license manager. |
+|  `netlm-server_OsDisk_<uniqueID>` | Disk | Operating system disk attached to virtual machine hosting network license manager. |
 
 
 # FAQ
