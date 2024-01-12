@@ -186,7 +186,7 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 
 | Release | MATLAB Runtime |
 |---------------|----------------|
-| MATLAB R2023b |  R2021a, R2021b, R2022a, R2022b, R2023a, R2023b |
+| MATLAB R2023b |  R2021b, R2022a, R2022b, R2023a, R2023b |
 | MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
 | MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |
 | MATLAB R2022a |  R2019b, R2020a, R2020b, R2021a, R2021b, R2022a |
