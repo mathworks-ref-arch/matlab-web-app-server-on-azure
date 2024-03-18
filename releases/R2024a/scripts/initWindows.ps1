@@ -1,44 +1,41 @@
-<#
-    .SYNOPSIS
-        This Script runs on master head node start, it is used in the ARM template to store the storage account name, key etc.
-        It saves the result to local disk and restarts the main nodeJS controller process running on the VM.
-#>
+#!/bin/bash -ex
+# Copyright the MathWorks Inc 2020
+# This script
+# 1. include storage account information to dynamicOption
+# 2. start controller
+while getopts "n:f:k:s:c:p:d:" opt; do
+    case ${opt} in
+    n)  storageAccountName="$OPTARG";;
+    f)  resourceGroup="$OPTARG";;
+    k)  subscriptionID="$OPTARG";;
+    s)  enableSSL="$OPTARG";;
+    c)  certFile="$OPTARG";;
+    p)  privateKeyFile="$OPTARG";;
+    d)  fqdn="$OPTARG";;
+    esac
+done
 
-Param (
-    [Parameter(Mandatory=$true)]
-    [String]$storageAccountName,
-    [Parameter(Mandatory=$true)]
-    [String]$resourceGroup,
-    [Parameter(Mandatory=$true)]
-    [String]$subscriptionID,
-    [Parameter(Mandatory=$true)]
-    [String]$enableSSL,
-    [Parameter(Mandatory=$true)]
-    [String]$certFile,
-    [Parameter(Mandatory=$true)]
-    [String]$privateKeyFile,
-    [Parameter(Mandatory=$true)]
-    [String]$fqdn
-)
+JSONCMD='
+{
+	"storageAccountName": "'"$storageAccountName"'",
+	"resourceGroup": "'"$resourceGroup"'",
+    "subscriptionID": "'"$subscriptionID"'",
+	"enableSSL": "'"$enableSSL"'",
+	"certFile": "'"$certFile"'",
+    "privateKeyFile": "'"$privateKeyFile"'",
+    "fqdn": "'"$fqdn"'"
+}
+'
 
-$myObj = New-Object System.Object
+myPath=/MathWorks/controller/config/dynamicOptions.json
+rm $myPath
 
-$myObj | Add-Member -type NoteProperty -name storageAccountName -value $storageAccountName
-$myObj | Add-Member -type NoteProperty -name resourceGroup -value $resourceGroup
-$myObj | Add-Member -type NoteProperty -name subscriptionID -value $subscriptionID
-$myObj | Add-Member -type NoteProperty -name enableSSL -value $enableSSL
-$myObj | Add-Member -type NoteProperty -name certFile -value $certFile
-$myObj | Add-Member -type NoteProperty -name privateKeyFile -value $privateKeyFile
-$myObj | Add-Member -type NoteProperty -name fqdn -value $fqdn
+#load json string into dynamic option file
+echo $JSONCMD >> $myPath
 
-$Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 
-$myContent = $myObj | ConvertTo-Json -Depth 100 
-$myPath = "c:\\MathWorks\\controller\\config\\dynamicOptions.json"
-[System.IO.File]::WriteAllLines($myPath, $myContent, $Utf8NoBomEncoding)
+#to allow web app server to listen on port 443
+sudo sysctl net.ipv4.ip_unprivileged_port_start=0
 
-# stop windows services from using port 80
-net stop http /y
-
-# Start the main service that performs bootstrapping and attaching the file share
-Start-Process -FilePath "node" -ArgumentList("c:\\MathWorks\\controller\\index.js")
+#start controller
+node /MathWorks/controller/index.js &
