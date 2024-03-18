@@ -25,9 +25,9 @@ Deploying MATLAB Web App Server on Azure automatically deploys a network license
 Click the **Deploy to Azure** button to deploy resources on
     Azure. This will open the Azure Portal in your web browser.
 
- <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2023b%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
+ <a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2024a%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
 
-> MATLAB Release: R2023b
+> MATLAB Release: R2024a
 <!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
 <p><strong>Note:</strong> Creating resources on Azure can take up to 10 minutes.</p>
 
@@ -171,6 +171,7 @@ If you are deploying a new network license manager, the following resources will
 You may use one of the deploy buttons below to deploy an older release of MATLAB Web App Server Reference Architecture. Note that the operating system is a parameter of the ARM template.
 | Release | Windows Server / Ubuntu                                                                 
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| R2023b  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2023b%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
 | R2023a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2023a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
 | R2022b  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022b%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
 | R2022a  | <a   href  ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2022a%2Ftemplates%2FmainTemplate.json"   target  ="_blank"  >   <img   src  ="http://azuredeploy.net/deploybutton.png"  />   </a> |
@@ -186,6 +187,7 @@ You may use one of the deploy buttons below to deploy an older release of MATLAB
 
 | Release | MATLAB Runtime |
 |---------------|----------------|
+| MATLAB R2024a |  R2021b, R2022a, R2022b, R2023a, R2023b, R2024a |
 | MATLAB R2023b |  R2021b, R2022a, R2022b, R2023a, R2023b |
 | MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
 | MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |
