@@ -32,16 +32,12 @@ To deploy the reference architecture, select your MATLAB Web App Server release 
 
 > **Note**: MathWorks provides templates for only the six most recent releases of MATLAB Web App Server. Earlier templates are removed and are no longer supported.
 # Architecture and Resources
-Deploying this reference architecture will create several resources in your
+Deploying this reference architecture creates several resources in your
 resource group.
-
-*Architecture on Azure*
 
 ![Cluster Architecture](/releases/R2024a/images/mwas-ref-arch-azure-architecture-diagram.png?raw=true)
 
-# Architecture and Resources
-Deploying this reference architecture will create several resources in your
-resource group.
+*Architecture on Azure*
 
 ### Resources
 | Resource Name  | Type | Description                                                                                                                                                                                                                                                                                                                        |
