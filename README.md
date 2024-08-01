@@ -28,7 +28,6 @@ To deploy the reference architecture, select your MATLAB Web App Server release 
 | [R2023a](releases/R2023a/README.md) | R2023a, R2022b, R2022a, R2021b, R2021a, R2020b |
 | [R2022b](releases/R2022b/README.md) | R2022b, R2022a, R2021b, R2021a, R2020b, R2020a |
 | [R2022a](releases/R2022a/README.md) | R2022a, R2021b, R2021a, R2020b, R2020a, R2019b |
-| [R2021b](releases/R2021b/README.md) | R2021b, R2021a, R2020b, R2020a, R2019b, R2019a |
 
 > **Note**: MathWorks provides templates for only the six most recent releases of MATLAB Web App Server. Earlier templates are removed and are no longer supported.
 # Architecture and Resources
