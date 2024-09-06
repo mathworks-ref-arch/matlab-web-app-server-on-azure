@@ -35,7 +35,7 @@ To deploy the reference architecture, select your MATLAB Web App Server release 
 Deploying this reference architecture creates several resources in your
 resource group.
 
-![Cluster Architecture](/releases/R2024a/images/mwas-ref-arch-azure-architecture-diagram.png?raw=true)
+![Cluster Architecture](/images/mwas-ref-arch-azure-architecture-diagram.png?raw=true)
 
 *Architecture on Azure*
 
