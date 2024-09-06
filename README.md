@@ -23,6 +23,7 @@ Deploying MATLAB Web App Server on Azure automatically deploys a network license
 To deploy the reference architecture, select your MATLAB Web App Server release from the table and follow the instructions to deploy the server using the provided template.
 | Release | Supported MATLAB Runtime Versions |
 | ------- | --------------------------------- |
+| [R2024b](releases/R2024b/README.md) | R2024b, R2024a, R2023b, R2023a, R2022b, R2022a |
 | [R2024a](releases/R2024a/README.md) | R2024a, R2023b, R2023a, R2022b, R2022a, R2021b |
 | [R2023b](releases/R2023b/README.md) | R2023b, R2023a, R2022b, R2022a, R2021b |
 | [R2023a](releases/R2023a/README.md) | R2023a, R2022b, R2022a, R2021b, R2021a, R2020b |
