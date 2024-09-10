@@ -179,7 +179,7 @@
     "storageEndpointSuffix": "[environment().suffixes.storage]",
     "_artifactsLocation": "[concat('https://', 'mwappdeployment.blob.', variables('storageEndpointSuffix'), '/webappserver-artifacts-r2024b/')]",
     "_artifactsLocationSasTokenWindows": "?sv=2023-01-03&st=2024-08-20T02%3A53%3A19Z&se=2027-12-21T03%3A53%3A00Z&sr=b&sp=r&sig=cMX5SPvxelGMOPmQ8AlI%2B159qN26mVotVSGqYbiYSDw%3D",
-    "_artifactsLocationSasTokenLinux": "?sv=2023-01-03&st=2024-08-20T02%3A52%3A38Z&se=2027-12-21T03%3A52%3A00Z&sr=b&sp=r&sig=vABlDXP5EBIKNRYayFKqtaNMLusy1qhfPBgCdAH0pQg%3D",
+    "_artifactsLocationSasTokenLinux": "?sv=2023-01-03&st=2024-09-10T14%3A20%3A32Z&se=2028-12-11T15%3A20%3A00Z&sr=b&sp=r&sig=ByXy4MRSRR4RZMj9tOvgS1aIdZMG4bU6FcdjZSyw9tk%3D",
     "windowsScriptURL": "[uri(variables('_artifactsLocation'), concat('initWindows.ps1', variables('_artifactsLocationSasTokenWindows')))]",
     "linuxScriptURL": "[uri(variables('_artifactsLocation'), concat('initLinux.sh', variables('_artifactsLocationSasTokenLinux')))]",
     "roleName": "[guid(resourceGroup().id, deployment().name)]",
