@@ -17,20 +17,23 @@ service you are using. Prices are subject to change.
 
 Use this guide to automate the process of running MATLAB Web App Server on Azure using your Azure account. The automation is accomplished using an Azure Resource Manager (ARM) template. The template is a JSON file that defines the resources needed to deploy and manage MATLAB Web App Server on Azure. For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources).
 
-Deploying MATLAB Web App Server on Azure automatically deploys a network license manager. However, you can also use an existing network license manager with MATLAB Web App Server on Azure by selecting `existing` from the deployment template. 
+Deploying MATLAB Web App Server on Azure automatically deploys a network license manager. However, you can also use an existing network license manager with MATLAB Web App Server on Azure by selecting `existing` from the deployment template.
 
 # Deploy Reference Architecture for Your Release
-To deploy the reference architecture, select your MATLAB Web App Server release from the table and follow the instructions to deploy the server using the provided template.
+To deploy the reference architecture, select your MATLAB Web App Server release from the table and follow the instructions to deploy the server using the provided template. 
 | Release | Supported MATLAB Runtime Versions |
 | ------- | --------------------------------- |
-| [R2024b](releases/R2024b/README.md) | R2024b, R2024a, R2023b, R2023a, R2022b, R2022a |
+| [R2024b](releases/R2024b/README.md) | R2024b, R2024a, R2023b, R2023a*, R2022b*, R2022a* |
 | [R2024a](releases/R2024a/README.md) | R2024a, R2023b, R2023a, R2022b, R2022a, R2021b |
 | [R2023b](releases/R2023b/README.md) | R2023b, R2023a, R2022b, R2022a, R2021b |
 | [R2023a](releases/R2023a/README.md) | R2023a, R2022b, R2022a, R2021b, R2021a, R2020b |
 | [R2022b](releases/R2022b/README.md) | R2022b, R2022a, R2021b, R2021a, R2020b, R2020a |
 | [R2022a](releases/R2022a/README.md) | R2022a, R2021b, R2021a, R2020b, R2020a, R2019b |
 
-> **Note**: MathWorks provides templates for only the six most recent releases of MATLAB Web App Server. Earlier templates are removed and are no longer supported.
+> \*For MATLAB Runtime versions prior to R2023b, the `unsafe-inline` attribute is added to the `script-src` directive of the Content Security Policy and cannot be disabled. This allows web apps with embedded JavaScript to execute on the server. You can enable these runtimes at your own risk using the [webapps-runtime](https://www.mathworks.com/help/webappserver/ref/webappsruntime.html) command.
+
+MathWorks provides templates for only the six most recent releases of MATLAB Web App Server. Earlier templates are removed and are no longer supported.
+
 # Architecture and Resources
 Deploying this reference architecture creates several resources in your
 resource group.
