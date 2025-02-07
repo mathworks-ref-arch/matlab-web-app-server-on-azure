@@ -1,17 +1,17 @@
-# MATLAB Web App Server on Microsoft Azure - R2023b
-Follow these steps to deploy the R2023b MATLAB Web App Server reference architecture on Microsoft Azure. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release). 
+# MATLAB Web App Server on Microsoft Azure - R2025a
+Follow these steps to deploy the R2025a MATLAB Web App Server reference architecture on Microsoft Azure. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release). 
 
 ## Step 1. Launch Template
 To deploy resources on Azure, click **Deploy to Azure**. The Azure Portal open in your web browser.
 
-<a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2023b%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
+<a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2025a%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
 
-> MATLAB Release: R2023b
+> MATLAB Release: R2025a
 
 <p><strong>Note:</strong> Creating resources on Azure can take up to 10 minutes.</p>
 
 ## Step 2. Configure Cloud Resources
-Provide values for parameters in the custom deployment template on the Azure Portal :
+Provide values for parameters in the custom deployment template on the Azure Portal:
 
 | Parameter Name          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -27,7 +27,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Name of Subnet for MATLAB Web App Server** | Specify the name of the subnet that the server can use.<ul><li>If deploying to a new virtual network, this specifies the name of the subnet to be created in the virtual network.</li><li>If deploying to an existing virtual network, this must match the name of a subnet in the existing virtual network.</li></ul> |
 | **Server Subnet CIDR Range** |  Specify subnet CIDR range. This is a CIDR range for the subnet specified above. For example: `10.0.0.0/24` .<ul><li>If deploying to a new virtual network, specify a suitable CIDR range to be used for the new subnet.</li><li>If deploying to an existing virtual network, this must match the CIDR range of the existing subnet.</li></ul> |
 | **Specify Private IP Address to VM Hosting MATLAB Web App Server** |   Specify an unused private IP address to be assigned to the VM hosting the server. For example: `10.0.0.4` .  |
-| **Assign Public IP Address to VM Hosting MATLAB Web App Server** |  Select `Yes` if you want to assign a public IP address to the VM hosting the server. Otherwise, select `No`. If you select 'No', you must create a new virtual machine and add it to the same virtual network as the MATLAB Web App Server deployment. The ability to access the web apps home page or remotely connect to the server machine can be accomplished only through this virtual machine.|
+| **Assign Public IP Address to VM Hosting MATLAB Web App Server** | Specify whether to assign a public IP address to the VM hosting the server. <ul><li>If you select "Yes", the storage account's "Public network access" is enabled, and you can access the storage account using the deployed VM and from selected virtual networks and IP addresses. The first entry in both the **IP Addresses Permitted to Remote into Server VM in CIDR Notation** and **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page in CIDR Notation** parameters are added under **Add IP ranges** to allow access from the internet or your on-premises network.</li><li>If you select "No", the storage account's "Public network access" is disabled. You must create a new virtual machine and add it to the same virtual network as the MATLAB Web App Server deployment. The ability to access the web apps home page or remotely connect to the server machine can be accomplished only through this virtual machine.</ul></li> <p><p>**NOTE:** If are using an existing virtual network, then you must manually add a private or service endpoint to the virtual network. For details, see [Create Service Endpoint in Virtual Network](#create-service-endpoint-in-virtual-network).</p> |
 | **IP Addresses Permitted to Remote into Server VM in CIDR Notation** | Specify the range of IP addresses in CIDR notation that can remote into the VM hosting MATLAB Web App Server and administer it. The format for CIDR addresses is IP Address/Mask. <p><em>Example</em>: `x.x.x.x/32`</p><ul><li> To determine your IP address, you can search for **"what is my ip address"** on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP address.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul>**NOTE:** Restricting access to the server using an IP address is not a form of authentication. MATLAB Web App Server supports authentication using OIDC. For details, see [Authentication](https://www.mathworks.com/help/webappserver/ug/authentication.html).|
 | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page in CIDR Notation** | Specify the range of IP addresses that can access the MATLAB Web App Server apps home page in CIDR notation. The format for CIDR addresses is IP Address/Mask. <p><em>*Example*</em>: `x.x.x.x/24`</p> You may also specify a comma separated list of CIDR addresses (no spaces). <p><em>*Example*</em>: `x.x.x.x/24,z.z.z.z/24`</p> |
 | **Base64 Encoded SSL Certificate** |   Enter a string that is a base64-encoded value of an SSL certificate in PEM format. On Linux, you can Base64 encode a PEM file using the following command in the terminal: <p> ```base64 -w 0 "cert.pem" > "cert.txt"``` </p> On Windows, you can Base64 encode a PEM file with a utility such as openssl or by using the following command in a PowerShell terminal: <p> ```[Convert]::ToBase64String([System.IO.File]::ReadAllBytes("cert.pem")) \| Set-Content -NoNewline -Encoding Ascii "cert.txt"``` </p> You may need to change the filename arguments accordingly. The contents of the output file (here "cert.txt") should be used for this parameter. <p><strong>NOTE:</strong><ul><li>MATLAB Web App Server only supports the `.pem` SSL certificate format.</li><li>SSL keys must be 2048 bits in length and must be private.</li><li>Intermediate certificates are not supported by the server.</li><li>SSL certificate should not be password protected.</li><li>Private key should not be password protected.</li></ul>|
@@ -35,6 +35,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Username to Remote into Server VM** | Specify a username to use when remoting into server VM hosting MATLAB Web App Server. The username must be at least 7 characters long. This username is also used to login to the network license manager portal. For example: webappadmin. You cannot use "admin" as a username. |
 | **Password to Remote into Server VM and Network License Manager Web Interface** | Specify a password to use when remoting into server VM hosting MATLAB Web App Server. This password is also used to login to the network license manager portal. Password requirements are: <p><ul><li>Must be between 12-123 characters.</li><li>Have uppercase and lowercase characters.</li><li>Have a digit.</li><li>Have a special character.</li></ul> |
 | **Deploy Network License Manager** | Select whether you want to deploy the Network License Manager for MATLAB to manage your license files. Selecting 'Yes' deploys the Network License Manager for MATLAB reference architecture. Select 'No' if you want to use an existing license manager. When using an existing license manager, the MATLAB Web App Server deployment and the license manager must be in the same virtual network.|
+| **Location** | Select the region to store resources in. This must match the location in the **Region** field. <p><em>Examples:</em> `eastus, westus, westus3`</p> |
 
 Click **Create** to begin the deployment. This can take up to 10 minutes.
 
@@ -56,6 +57,17 @@ Click **Create** to begin the deployment. This can take up to 10 minutes.
 You are now ready to use MATLAB Web App Server on Azure. 
 
 To run applications on MATLAB Web App Server, you need to create applications using MATLAB Compiler. For more information, see [Create Web App](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler documentation.
+
+# Create Service Endpoint in Virtual Network
+1. In the Azure Portal, click **Resource groups** and select the virtual network for this deployment.
+1. In the left navigation menu, expand the "Settings" category.<ul><li>If you set **Assign Public IP Address to VM Hosting MATLAB Web App Server** to "Yes", then click "Service endpoints".</li><li>If you set **Assign Public IP Address to VM Hosting MATLAB Web App Server** to "No", then click "Private endpoints".</li></ul>
+1. Click "Add" to add the new endpoint. It must have the following parameters:
+
+    |         |                     |
+    |---------|---------------------|
+    | **Service** | Microsoft.Storage   |
+    | **Subnet**  | default             |
+    | **Locations** | East US, West US, West US 3 |
 
 # Get Network License Manager MAC Address
 >**NOTE:**The network license manager MAC address is available only after the deployment to the cloud is complete.
