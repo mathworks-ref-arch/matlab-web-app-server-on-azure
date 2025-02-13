@@ -58,7 +58,8 @@ You are now ready to use MATLAB Web App Server on Azure.
 
 To run applications on MATLAB Web App Server, you need to create applications using MATLAB Compiler. For more information, see [Create Web App](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler documentation.
 
-# Create Service Endpoint in Virtual Network
+# Create Endpoint in Virtual Network
+Service Endpoints enable private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
 1. In the Azure Portal, click **Resource groups** and select the virtual network for this deployment.
 1. In the left navigation menu, expand the "Settings" category.<ul><li>If you set **Assign Public IP Address to VM Hosting MATLAB Web App Server** to "Yes", then click "Service endpoints".</li><li>If you set **Assign Public IP Address to VM Hosting MATLAB Web App Server** to "No", then click "Private endpoints".</li></ul>
 1. Click "Add" to add the new endpoint. It must have the following parameters:
@@ -68,6 +69,7 @@ To run applications on MATLAB Web App Server, you need to create applications us
     | **Service** | Microsoft.Storage   |
     | **Subnet**  | default             |
     | **Locations** | East US, West US, West US 3 |
+For more information on creating endpoints, see [Create and associate service endpoint policies](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies).
 
 # Get Network License Manager MAC Address
 >**NOTE:**The network license manager MAC address is available only after the deployment to the cloud is complete.
@@ -84,6 +86,9 @@ To get the MAC address of the network license manager:
 1. Select `Browse` from the left navigation pane. You see two folders: `apps` and `logs`.
 1. Click the `apps` folder.
 1. Click `Upload` to browse and upload your app by following the prompts.
+
+**NOTE:** If you set **Assign Public IP Address to VM Hosting MATLAB Web App Server** to "No", then you must use a bastion host or jump box VM to connect to the storage account. For details, see [Overview of Azure Bastion host and jumpboxes](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/cloud-scale-analytics/architectures/connect-to-environments-privately).
+
 ## Upload by Remoting into Server VM
 ### Windows Virtual Machine
 1. Remotely connect to the server VM. For details, see [How do I remotely connect to the server virtual machine?](/README.md#how-do-i-remotely-connect-to-the-server-virtual-machine).
