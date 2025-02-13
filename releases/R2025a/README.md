@@ -72,7 +72,7 @@ Service Endpoints enable private IP addresses in the VNet to reach the endpoint 
 For more information on creating endpoints, see [Create and associate service endpoint policies](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies).
 
 # Get Network License Manager MAC Address
->**Note:**The network license manager MAC address is available only after the deployment to the cloud is complete.
+>**Note:** The network license manager MAC address is available only after the deployment to the cloud is complete.
 
 To get the MAC address of the network license manager:
 1. Log in to the Network License Manager for MATLAB dashboard using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
