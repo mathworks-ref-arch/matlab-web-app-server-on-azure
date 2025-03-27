@@ -66,7 +66,8 @@ If are using an existing virtual network, then you must manually add a private o
     |         |                     |
     |---------|---------------------|
     | **Service** | Microsoft.Storage   |
-    | **Subnet**  | Name of subnet in which the storage account is deployed     |
+    | **Subnet**  | Name of subnet in which the storage account will be deployed   |
+    | **Locations** (private endpoint only)  | Region of virtual network, for example: `East US`  |
 
 For more information on creating endpoints, see [Create and associate service endpoint policies](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies).
 
