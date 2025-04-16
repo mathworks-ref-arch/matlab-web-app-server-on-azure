@@ -68,8 +68,25 @@ If you are deploying a new network license manager, the following resources will
 # FAQ
 ## How do I deploy to an existing virtual network?
 >**Note:** Your existing virtual network must have at least two available subnets for deployment. 
-1. To deploy MATLAB Web App Server to an existing virtual network, set the **Deploy to New or Existing Virtual Network** paratmeter to `existing`.  
-1. Set the following parameter values in the template based on your existing virtual network and open the ports listed below. 
+
+### Create Endpoint in Virtual Network
+If you are using an existing virtual network, then you must manually add a private or service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. Service Endpoints enable private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
+1. In the Azure Portal, click **Resource groups** and select the virtual network for this deployment.
+1. In the left navigation menu, expand the **Settings** category.<ul><li>If you set the template parameter **Assign Public IP Address to VM Hosting MATLAB Web App Server** to `Yes` in the deployment template, then click **Service endpoints**.</li><li>If you set the template parameter **Assign Public IP Address to VM Hosting MATLAB Web App Server** to `No` in the deployment template, then click **Private endpoints**.</li></ul>
+1. Click **Add** to add the new endpoint. It must have the following parameters:
+
+    <table>
+      <tr><td><b>Service</b></td><td>Microsoft.Storage</td></tr>
+      <tr><td><b>Subnet</b></td><td>Name of subnet in which the storage account will be deployed</td></tr>
+      <tr><td><b>Region</b> (private endpoint only)</td><td>Region of virtual network, for example: `East US`</td></tr>
+    </table>
+
+For more information on creating endpoints, see [Create and associate service endpoint policies](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies).
+
+### Deploy to Existing Virtual Network
+To deploy MATLAB Web App Server to an existing virtual network, set the **Deploy to New or Existing Virtual Network** parameter to `existing`.
+
+Set the following parameter values in the template based on your existing virtual network. 
 
 | Parameter Name          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -80,8 +97,8 @@ If you are deploying a new network license manager, the following resources will
 | **Server Subnet CIDR Range** |  Specify existing virtual network subnet CIDR range. |
 | **Specify Private IP Address to VM Hosting MATLAB Web App Server** |   Specify a private IP address to the VM hosting the server. For example: 10.0.0.4 . |
 
-### **Ports to Open in Existing Virtual Network**
-
+### Ports to Open in Existing Virtual Network
+If you are deploying MATLAB Web App Server to an existing virtual network, you must open the following ports in your virtual network:
 | Port | Description |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `443` | HTTPS - the port Web App Server will service if SSL is enabled |
@@ -96,7 +113,7 @@ If you are deploying a new network license manager, the following resources will
 1. During the registration process, you need a redirect URL for MATLAB Web App Server. The format of the URL is: `https://<MATLABWebAppServer_hostname>:<port_server_is_running_on>/webapps/extauth/callback`. For example: `https://example.com:9988/webapps/extauth/callback`.
 1. Create a file named `webapps_authn.json` using the JSON schema specified [here](https://www.mathworks.com/help/webappserver/ug/authentication.html#mw_908077ba-725e-4cc9-a906-a1bf29fceaf8) and place it in the `webapps_private` folder of the server. For folder location, see the [doc](https://www.mathworks.com/help/webappserver/ug/authentication.html#mw_146e67b0-5dff-4310-8d5d-544250e931a9).
 1. To place the `webapps_authn.json` file in the `webapps_private` folder of the server, you need to remotely connect to the server using RDP on Windows or SCP on Linux. Once connected, you can drag-and-drop the `webapps_authn.json` file you created into the `webapps_private` folder of the server. Alternatively, you can drop the file into the file share first, before moving it to the `webapps_private` folder.
-1. Restart the server by executing `webapps-restart` from a terminal on the the server machine. The `webapps-restart` command is located in the `script` folder within the default installation location. For default location, see the [doc](https://www.mathworks.com/help/webappserver/ug/set-up-matlab-web-app-server.html#responsive_offcanvas).
+1. Restart the server by executing `webapps-restart` from a terminal on the server machine. The `webapps-restart` command is located in the `script` folder within the default installation location. For default location, see the [doc](https://www.mathworks.com/help/webappserver/ug/set-up-matlab-web-app-server.html#responsive_offcanvas).
 	
 ## How do I remotely connect to the server virtual machine?
 ### Windows Virtual Machine
