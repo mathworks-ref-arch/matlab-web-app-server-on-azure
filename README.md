@@ -69,16 +69,17 @@ If you are deploying a new network license manager, the following resources will
 ## How do I deploy to an existing virtual network?
 >**Note:** Your existing virtual network must have at least two available subnets for deployment. 
 
-### Create Endpoint in Virtual Network
-If you are using an existing virtual network, then you must manually add a private or service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. Service Endpoints enable private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
+### Create Service Endpoint in Virtual Network (Since R2025a)
+Starting in R2025a, If you are using an existing virtual network and assign a public IP address to the VM hosting MATLAB Web App Server, then you must manually add a service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. Service Endpoints enable private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
+
+You can check if such an endpoint already exists by navigating to the Azure Portal, selecting your virtual network, and clicking **Service endpoints**. If no such endpoint is present, follow these steps:
 1. In the Azure Portal, click **Resource groups** and select the virtual network for this deployment.
-1. In the left navigation menu, expand the **Settings** category.<ul><li>If you set the template parameter **Assign Public IP Address to VM Hosting MATLAB Web App Server** to `Yes` in the deployment template, then click **Service endpoints**.</li><li>If you set the template parameter **Assign Public IP Address to VM Hosting MATLAB Web App Server** to `No` in the deployment template, then click **Private endpoints**.</li></ul>
+1. In the left navigation menu, expand the **Settings** category and click **Service endpoints**.
 1. Click **Add** to add the new endpoint. It must have the following parameters:
 
     <table>
       <tr><td><b>Service</b></td><td>Microsoft.Storage</td></tr>
-      <tr><td><b>Subnet</b></td><td>Name of subnet in which the storage account will be deployed</td></tr>
-      <tr><td><b>Region</b> (private endpoint only)</td><td>Region of virtual network, for example: `East US`</td></tr>
+      <tr><td><b>Subnet</b></td><td>Name of subnet in which the storage account will be deployed</td></tr>      
     </table>
 
 For more information on creating endpoints, see [Create and associate service endpoint policies](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies).
