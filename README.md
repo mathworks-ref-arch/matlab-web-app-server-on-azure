@@ -70,7 +70,7 @@ If you are deploying a new network license manager, the following resources will
 >**Note:** Your existing virtual network must have at least two available subnets for deployment. 
 
 ### Create Service Endpoint in Virtual Network (Since R2025a)
-Starting in R2025a, If you are using an existing virtual network and assign a public IP address to the VM hosting MATLAB Web App Server, then you must manually add a service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. Service Endpoints enable private IP addresses in the VNet to reach the endpoint of an Azure service without needing a public IP address on the VNet. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
+Starting in R2025a, If you are using an existing virtual network and assign a public IP address to the VM hosting MATLAB Web App Server, then you must manually add a service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
 
 You can check if such an endpoint already exists by navigating to the Azure Portal, selecting your virtual network, and clicking **Service endpoints**. If no such endpoint is present, follow these steps:
 1. In the Azure Portal, click **Resource groups** and select the virtual network for this deployment.
