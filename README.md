@@ -94,7 +94,7 @@ You can check if such an endpoint already exists by navigating to the Azure Port
 For more information on creating endpoints, see [Create and associate service endpoint policies](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies).
 
 ### Deploy to Existing Virtual Network
-To deploy MATLAB Web App Server to an existing virtual network, set the **Deploy to New or Existing Virtual Network** parameter to `existing`.
+To deploy MATLAB Web App Server to an existing virtual network, in the deployment template, set the **Deploy to New or Existing Virtual Network** parameter to `existing`.
 
 Set the following parameter values in the template based on your existing virtual network. 
 
