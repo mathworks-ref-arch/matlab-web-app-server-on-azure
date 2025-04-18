@@ -69,8 +69,17 @@ If you are deploying a new network license manager, the following resources will
 ## How do I deploy to an existing virtual network?
 >**Note:** Your existing virtual network must have at least two available subnets for deployment. 
 
+### Ports to Open in Existing Virtual Network
+If you are deploying MATLAB Web App Server to an existing virtual network, you must open the following ports in your virtual network:
+| Port | Description |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `443` | HTTPS - the port Web App Server will service if SSL is enabled |
+| `22` | SSH - used for remoting into Linux machines |
+| `3389` | RDP - used for remoting into Windows machines |
+| `27000` | Required for communication between network license manager and Web App Server |
+
 ### Create Service Endpoint in Virtual Network (Since R2025a)
-Starting in R2025a, If you are using an existing virtual network and assign a public IP address to the VM hosting MATLAB Web App Server, then you must manually add a service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. For more details, see [Virtual Network service endpoints](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview).
+Starting in R2025a, if you are using an existing virtual network and assign a public IP address to the VM hosting MATLAB Web App Server, then you must manually add a service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. For more details, see [Grant access from a virtual network](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security?tabs=azure-portal#grant-access-from-a-virtual-network) in the Microsoft Azure documentation.
 
 You can check if such an endpoint already exists by navigating to the Azure Portal, selecting your virtual network, and clicking **Service endpoints**. If no such endpoint is present, follow these steps:
 1. In the Azure Portal, click **Resource groups** and select the virtual network for this deployment.
@@ -89,25 +98,14 @@ To deploy MATLAB Web App Server to an existing virtual network, set the **Deploy
 
 Set the following parameter values in the template based on your existing virtual network. 
 
-| Parameter Name          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter Name    | Value     |
+|-------------------|-----------|
 | **Resource Group Name of Virtual Network** |   Specify the name of the Azure resource group that has your existing virtual network. |
 | **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the existing virtual network where the server will be deployed. |
 | **Virtual Network CIDR Range** |  Specify existing virtual network CIDR range. |
 | **Name of Subnet for MATLAB Web App Server** | Specify the name of a subnet within the existing virtual network that the server can use. |
 | **Server Subnet CIDR Range** |  Specify existing virtual network subnet CIDR range. |
 | **Specify Private IP Address to VM Hosting MATLAB Web App Server** |   Specify a private IP address to the VM hosting the server. For example: 10.0.0.4 . |
-
-### Ports to Open in Existing Virtual Network
-If you are deploying MATLAB Web App Server to an existing virtual network, you must open the following ports in your virtual network:
-| Port | Description |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `443` | HTTPS - the port Web App Server will service if SSL is enabled |
-| `22` | SSH - used for remoting into Linux machines |
-| `3389` | RDP - used for remoting into Windows machines |
-| `27000` | Required for communication between network license manager and Web App Server |
-
-
 
 ## How do I configure OIDC authentication?
 1. To use OIDC authentication on the server, you need to register with an IdP such as Microsoft® Azure® AD, or Google® Identity Platform. MATLAB Web App Server must be registered as an application with the IdP.
