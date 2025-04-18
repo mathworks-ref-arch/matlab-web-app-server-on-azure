@@ -1,7 +1,7 @@
 <#
     .SYNOPSIS
-        This Script runs on master head node start, it is used in the ARM template to pass around the storage account name, key
-        as well as the mpsEndpoint. It saves the result to local disk and restarts the main nodeJS dashboard process running on the VM
+        This Script runs on master head node start, it is used in the ARM template to store the storage account name, key etc.
+        It saves the result to local disk and restarts the main nodeJS controller process running on the VM.
 #>
 
 Param (
@@ -16,7 +16,9 @@ Param (
     [Parameter(Mandatory=$true)]
     [String]$certFile,
     [Parameter(Mandatory=$true)]
-    [String]$privateKeyFile
+    [String]$privateKeyFile,
+    [Parameter(Mandatory=$true)]
+    [String]$fqdn
 )
 
 $myObj = New-Object System.Object
@@ -27,6 +29,7 @@ $myObj | Add-Member -type NoteProperty -name subscriptionID -value $subscription
 $myObj | Add-Member -type NoteProperty -name enableSSL -value $enableSSL
 $myObj | Add-Member -type NoteProperty -name certFile -value $certFile
 $myObj | Add-Member -type NoteProperty -name privateKeyFile -value $privateKeyFile
+$myObj | Add-Member -type NoteProperty -name fqdn -value $fqdn
 
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 
