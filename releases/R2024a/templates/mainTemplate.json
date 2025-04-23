@@ -190,7 +190,7 @@
       "instanceType": {
         "value": "Standard_D2s_v3"
       },
-      "clientIPAddress": {
+      "clientIPAddressList": {
         "value": "[parameters('IP Addresses Permitted to Remote into Server VM in CIDR Notation')]"
       },
       "adminUsername": {
@@ -199,11 +199,14 @@
       "adminPassword": {
         "value": "[parameters('Password to Remote into Server VM and Network License Manager Web Interface')]"
       },
-      "virtualNetworkResourceID": {
+      "existingVnetResourceID": {
         "value": "[variables('virtualNetworkID')]"
       },
-      "subnetName": {
+      "existingSubnetName": {
         "value": "[variables('subnetName')]"
+      },
+      "createPublicIPAddress":{
+          "value": "[parameters('Assign Public IP Address to VM Hosting MATLAB Web App Server')]"
       }
     },
     "publicDns": "[concat(variables('webappDNSName'), '.', variables('location'), '.cloudapp.azure.com')]",
