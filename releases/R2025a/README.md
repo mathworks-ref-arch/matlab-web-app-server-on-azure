@@ -38,7 +38,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Username to Remote into Server VM** | Specify a username to use when remoting into server VM hosting MATLAB Web App Server. The username must be at least 7 characters long. This username is also used to login to the network license manager portal. For example: `webappadmin`. You cannot use `admin` as a username. |
 | **Password to Remote into Server VM and Network License Manager Web Interface** | Specify a password to use when remoting into server VM hosting MATLAB Web App Server. This password is also used to login to the network license manager portal. Password requirements are: <p><ul><li>Must be between 12-123 characters.</li><li>Have uppercase and lowercase characters.</li><li>Have a digit.</li><li>Have a special character.</li></ul> |
 | **Deploy Network License Manager** | Select whether you want to deploy the Network License Manager for MATLAB to manage your license files. Selecting 'Yes' deploys the Network License Manager for MATLAB reference architecture. Select 'No' if you want to use an existing license manager. When using an existing license manager, the MATLAB Web App Server deployment and the license manager must be in the same virtual network.|
-| **Location** | Select the region to store resources in. This must match the location in the **Region** field. <p><em>Examples:</em> `eastus, westus, westus3`</p> |
+| **Location** | Region to store resources in. All resources are deployed in the same region as the resource group.<p><em>Examples:</em> `eastus, westus, westus3`</p> |
 
 Click **Create** to begin the deployment. This can take up to 10 minutes.
 
