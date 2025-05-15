@@ -3,7 +3,7 @@
 # This script
 # 1. include storage account information to dynamicOption
 # 2. start controller
-while getopts "n:f:k:s:c:p:" opt; do
+while getopts "n:f:k:s:c:p:d:" opt; do
     case ${opt} in
     n)  storageAccountName="$OPTARG";;
     f)  resourceGroup="$OPTARG";;
@@ -11,6 +11,7 @@ while getopts "n:f:k:s:c:p:" opt; do
     s)  enableSSL="$OPTARG";;
     c)  certFile="$OPTARG";;
     p)  privateKeyFile="$OPTARG";;
+    d)  fqdn="$OPTARG";;
     esac
 done
 
@@ -21,7 +22,8 @@ JSONCMD='
     "subscriptionID": "'"$subscriptionID"'",
 	"enableSSL": "'"$enableSSL"'",
 	"certFile": "'"$certFile"'",
-    "privateKeyFile": "'"$privateKeyFile"'"
+    "privateKeyFile": "'"$privateKeyFile"'",
+    "fqdn": "'"$fqdn"'"
 }
 '
 
@@ -30,6 +32,7 @@ rm $myPath
 
 #load json string into dynamic option file
 echo $JSONCMD >> $myPath
+
 
 #to allow web app server to listen on port 443
 sudo sysctl net.ipv4.ip_unprivileged_port_start=0
