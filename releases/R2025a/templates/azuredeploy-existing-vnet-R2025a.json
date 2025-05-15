@@ -189,7 +189,7 @@
         "roleName": "[guid(resourceGroup().id, deployment().name)]",
         "contributor": "[resourceId('Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
         "deployNetworkLicenseManager": "[parameters('Deploy Network License Manager For MATLAB')]",
-        "flex-arm-template-link": "https://mwappdeployment.blob.core.windows.net/webappserver-artifacts-r2025a/license-manager.json?sp=racwd&st=2024-12-23T15:07:25Z&se=2025-05-27T22:07:25Z&spr=https&sv=2022-11-02&sr=b&sig=xfakCE61Mlx2N7Wv00k0gQGWg7ZhEU1yespjZK4dc98%3D",
+        "flex-arm-template-link": "https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-azure/blob/master/releases/v1/latest/azuredeploy.json",
         "flex-parameters": {
             "instanceType": {
                 "value": "Standard_D2s_v3"
