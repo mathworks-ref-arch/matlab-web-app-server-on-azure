@@ -6,6 +6,7 @@
 name: MATLAB Web App Server Ref Arch Azure Existing Virtual Network Health Check Test on linux in Japan East
 
 on:
+ workflow_dispatch:
  schedule:
     - cron: '0 16 * * 4'
 jobs:
