@@ -103,7 +103,7 @@ def create_vnet(credentials,
     for i in range(1, len(subnets_cidr) + 1):
 
          # Create Subnet
-         subnet_name = "subnet_" + str(i) + "_" + str(uuid.uuid4())
+         subnet_name = "subnet_" + str(i) + "-" + str(uuid.uuid4())
          async_subnet_creation = network_client.subnets.create_or_update(
                                                resource_name_vnet,
                                                vnet_name,
