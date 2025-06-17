@@ -11,6 +11,7 @@ import datetime
 import testtools.AzureAuthentication as AzureAuth
 import testtools.deploy as DeployOp
 from azure.mgmt.network import NetworkManagementClient
+from azure.mgmt.network.models import ServiceEndpointPropertiesFormat, Subnet
 
 def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, username, password, ipAddress, sslCertificate, sslPrivateKey, location_arg, platform_arg, existingVPC):
 
@@ -27,7 +28,6 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     location = location_arg
 
     if existingVPC=='true':
-        print('yes')
         # Subnets & virtual network info
         subnets_cidr = ['10.1.0.0/24']
         vnet_cidr = '10.1.0.0/16'
@@ -58,7 +58,6 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
             print(f"Enabled Microsoft.Storage service endpoint for subnet: {subnet_name}")
         except Exception as e:
             raise(e)
-        print(subnet_name[0])
     # Parameters for deployment
     parameters = {
         "IP Addresses Permitted to Remote into Server VM in CIDR Notation": ipAddress,
@@ -80,8 +79,6 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
             "Resource Group Name Of Virtual Network": resource_name_vnet,
             "Operating System": platform_arg
         })
-
-    print(parameters)
 
     # Find latest MATLAB release from Github page and get template json path.
     res = requests.get(
