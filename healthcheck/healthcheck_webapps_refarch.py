@@ -41,6 +41,22 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
                                                             subnets_cidr,
                                                             resource_name_vnet,
                                                             vnet_cidr)
+            network_client = NetworkManagementClient(credentials, subscription_id)
+            # Add service endpoint to subnets
+            for subnet_name in subnet_names:
+                subnet = network_client.subnets.get(resource_name_vnet, vnet_name, subnet_name)
+                if not subnet.service_endpoints:
+                    subnet.service_endpoints = []
+                subnet.service_endpoints.append(
+                    ServiceEndpointPropertiesFormat(service='Microsoft.Storage')
+                )
+                updated_subnet = network_client.subnets.create_or_update(
+                    resource_name_vnet,
+                    vnet_name,
+                    subnet_name,
+                    subnet
+                ).result()
+                print(f"Enabled Microsoft.Storage service endpoint for subnet: {subnet_name}")
         except Exception as e:
             raise(e)
         print(subnet_name[0])
