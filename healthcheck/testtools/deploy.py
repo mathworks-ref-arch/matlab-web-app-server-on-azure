@@ -43,10 +43,12 @@ def deploy_webapp_template(credentials,
     print("Beginning the deployment... \n\n")
     # Deploy template.
 
-    deployment = resource_client.deployments.create_or_update(
+    deployment = resource_client.deployments.begin_create_or_update(
         resource_group_name,
         f'{ref_arch_name}-deployment',
-        deployment_properties
+        {
+            "properties": deployment_properties
+        }
     )
 
     # Block because of VM quotas.
@@ -121,6 +123,6 @@ def create_vnet(credentials,
 def delete_resourcegroup(credentials, subscription_id, resource_group_name) :
     resource_client = getResourceClient.get_resource_client(credentials, subscription_id)
     print("Deleting the deployment... \n\n")
-    deployment_deletion = resource_client.resource_groups.delete(resource_group_name)
+    deployment_deletion = resource_client.resource_groups.begin_delete(resource_group_name)
     print(deployment_deletion)
     #return deployment_deletion
