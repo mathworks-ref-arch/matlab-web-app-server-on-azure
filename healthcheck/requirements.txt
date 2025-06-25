@@ -1,4 +1,5 @@
 azure-functions==1.23.0
+azure-identity==1.23.0
 azure-mgmt-resource==24.0.0
 azure-mgmt-marketplaceordering==1.1.0
 azure-mgmt-compute==34.1.0
