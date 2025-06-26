@@ -35,12 +35,13 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         resource_name_vnet = 'vnet_resource_group'
         # Deploy a resource group with a virtual network and specified number of subnets
         try:
-            subnet_name, vnet_name = DeployOp.create_vnet(credentials,
+            subnet_name_list, vnet_name = DeployOp.create_vnet(credentials,
                                                             subscription_id,
                                                             location,
                                                             subnets_cidr,
                                                             resource_name_vnet,
                                                             vnet_cidr)
+            subnet_name = subnet_name_list[0]
             network_client = NetworkManagementClient(credentials, subscription_id)
             # Add service endpoint to subnets
             subnet = network_client.subnets.get(resource_name_vnet, vnet_name, subnet_name)
@@ -49,7 +50,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
             subnet.service_endpoints.append(
                 ServiceEndpointPropertiesFormat(service='Microsoft.Storage')
             )
-            updated_subnet = network_client.subnets.create_or_update(
+            updated_subnet = network_client.subnets.begin_create_or_update(
                 resource_name_vnet,
                 vnet_name,
                 subnet_name,
