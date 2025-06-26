@@ -105,12 +105,14 @@ def create_vnet(credentials,
 
          # Create Subnet
          subnet_name = "subnet_" + str(i) + "-" + str(uuid.uuid4())
-         async_subnet_creation = network_client.subnets.create_or_update(
-                                               resource_name_vnet,
-                                               vnet_name,
-                                               subnet_name,
-                                               {'address_prefix': subnets_cidr[i-1]}
-                                               )
+         async_subnet_creation = network_client.subnets.begin_create_or_update(
+             resource_group_name=resource_name_vnet,
+             virtual_network_name=vnet_name,
+             subnet_name=subnet_name,
+             subnet_parameters={
+                 'address_prefix': subnets_cidr[i - 1]
+             }
+         )
          subnet_info = async_subnet_creation.result()
          # Add created subnet name to subnet_names array
          subnet_names.append(subnet_info.name)
