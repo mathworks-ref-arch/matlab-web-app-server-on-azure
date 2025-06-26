@@ -82,20 +82,19 @@ def create_vnet(credentials,
     print("Resource group created...\n")
 
     # Create virtual network
-    async_vnet_creation = network_client.virtual_networks.create_or_update(
-          resource_name_vnet,
-          vnet_name,
-          {
+    async_vnet_creation = network_client.virtual_networks.begin_create_or_update(
+        resource_group_name=resource_name_vnet,
+        virtual_network_name=vnet_name,
+        parameters={
+            'location': location,
             'address_space': {
                 'address_prefixes': [vnet_cidr]
-          },
-          'location': location
-
+            }
         }
     )
 
-    # Wait for the virtual network creation
-    async_vnet_creation.wait()
+    # Wait for the virtual network creation to complete
+    async_vnet_creation.result()
 
     print("Added a virtual network... \n")
 
