@@ -69,7 +69,7 @@ def create_vnet(credentials,
     vnet_cidr):
 
     resource_client = getResourceClient.get_resource_client(credentials, subscription_id)
-    vnet_name = 'my_vnet'
+    vnet_name = "my_vnet-" + str(uuid.uuid4())
 
     # Create resource group
     print("Creating a resource group with a virtual network... \n")
