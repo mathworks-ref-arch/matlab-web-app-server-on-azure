@@ -123,6 +123,10 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
                 deployment_deletion = DeployOp.delete_resourcegroup(credentials, subscription_id, resource_group_name)
                 ct = datetime.datetime.now()
                 print("Date time after deployment and deletion of stack:-", ct)
+    # Delete deployment with virtual network
+    DeployOp.delete_resourcegroup(credentials, subscription_id, resource_name_vnet)
+    ct = datetime.datetime.now()
+    print("Deleted the deployment which contains the virtual network:-", ct)
 
     if existingVPC=='true':
         # Delete deployment with virtual network
