@@ -131,11 +131,5 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         ct = datetime.datetime.now()
         print("Deleted the deployment which contains the virtual network:-", ct)
 
-    if existingVPC=='true':
-        # Delete deployment with virtual network
-        DeployOp.delete_resourcegroup(credentials, subscription_id, resource_name_vnet)
-        ct = datetime.datetime.now()
-        print("Deleted the deployment which contains the virtual network:-", ct)
-
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9], sys.argv[10], sys.argv[11])
