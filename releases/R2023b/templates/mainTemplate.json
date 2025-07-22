@@ -174,12 +174,12 @@
     "roleName": "[guid(resourceGroup().id, deployment().name)]",
     "contributor": "[resourceId('Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
     "deployNetworkLicenseManager": "[parameters('Deploy Network License Manager For MATLAB')]",
-    "flex-arm-template-link": "https://raw.githubusercontent.com/mathworks-ref-arch/matlab-web-app-server-on-azure/main/releases/R2023b/templates/azuredeploy-existing-vnet-R2023b.json",
+    "flex-arm-template-link": "https://raw.githubusercontent.com/mathworks-ref-arch/license-manager-for-matlab-on-azure/refs/heads/master/releases/v1/latest/azuredeploy.json",
     "flex-parameters": {
       "instanceType": {
         "value": "Standard_D2s_v3"
       },
-      "clientIPAddress": {
+      "clientIPAddressList": {
         "value": "[parameters('IP Addresses Permitted to Remote into Server VM in CIDR Notation')]"
       },
       "adminUsername": {
@@ -188,11 +188,14 @@
       "adminPassword": {
         "value": "[parameters('Password to Remote into Server VM and Network License Manager Web Interface')]"
       },
-      "virtualNetworkResourceID": {
+      "existingVnetResourceID": {
         "value": "[variables('virtualNetworkID')]"
       },
-      "subnetName": {
+      "existingSubnetName": {
         "value": "[variables('subnetName')]"
+      },
+      "createPublicIPAddress":{
+          "value": "[parameters('Assign Public IP Address to VM Hosting MATLAB Web App Server')]"
       }
     }
   },
