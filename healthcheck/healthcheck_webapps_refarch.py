@@ -13,7 +13,7 @@ import testtools.deploy as DeployOp
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.network.models import ServiceEndpointPropertiesFormat, Subnet
 
-def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, username, password, ipAddress, sslCertificate, sslPrivateKey, location_arg, platform_arg, existingVPC):
+def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, username, password, sslCertificate, sslPrivateKey, location_arg, platform_arg, existingVPC):
 
     # Deploy template
     # Reference architecture in production.
@@ -26,6 +26,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     credentials = AzureAuth.authenticate_client_key(tenant_id, client_id, client_secret)
     subscription_id = subscription_id_arg
     location = location_arg
+    ipAddress = requests.get("https://api.ipify.org").text + "/32"
 
     if existingVPC=='true':
         # Subnets & virtual network info
@@ -131,4 +132,4 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         print("Deleted the deployment which contains the virtual network:-", ct)
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9], sys.argv[10], sys.argv[11], sys.argv[12])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9], sys.argv[10], sys.argv[11])
