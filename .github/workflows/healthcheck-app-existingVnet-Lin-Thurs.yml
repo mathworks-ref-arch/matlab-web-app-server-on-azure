@@ -6,18 +6,19 @@
 name: MATLAB Web App Server Ref Arch Azure Existing Virtual Network Health Check Test on linux in Japan East
 
 on:
+ workflow_dispatch:
  schedule:
-    - cron: '0 16 * * 4'
+    - cron: '0 12 * * 4'
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.8
+    - name: Set up Python 3.13
       uses: actions/setup-python@v4
       with:
-        python-version: 3.8
+        python-version: '3.13'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -33,5 +34,5 @@ jobs:
     - name: MWAS ref Arch Existing Virtual Network Health check test on linux in Japan East.
       run: |
         cd healthcheck
-        python healthcheck_webapps_refarch.py ${{ secrets.TenantId }} ${{ secrets.ClientId }} ${{ secrets.ClientSecret }} ${{ secrets.SubscriptionId }} ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.ipaddress }} ${{ secrets.sslcertificate }} ${{ secrets.sslkey }} "japaneast" "Linux" "true"
+        python healthcheck_webapps_refarch.py ${{ secrets.TenantId }} ${{ secrets.ClientId }} ${{ secrets.ClientSecret }} ${{ secrets.SubscriptionId }} ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.sslcertificate }} ${{ secrets.sslkey }} "japaneast" "Linux" "true"
 

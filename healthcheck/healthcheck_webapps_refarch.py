@@ -11,8 +11,9 @@ import datetime
 import testtools.AzureAuthentication as AzureAuth
 import testtools.deploy as DeployOp
 from azure.mgmt.network import NetworkManagementClient
+from azure.mgmt.network.models import ServiceEndpointPropertiesFormat, Subnet
 
-def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, username, password, ipAddress, sslCertificate, sslPrivateKey, location_arg, platform_arg, existingVPC):
+def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, username, password, sslCertificate, sslPrivateKey, location_arg, platform_arg, existingVPC):
 
     # Deploy template
     # Reference architecture in production.
@@ -25,9 +26,9 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     credentials = AzureAuth.authenticate_client_key(tenant_id, client_id, client_secret)
     subscription_id = subscription_id_arg
     location = location_arg
+    ipAddress = requests.get("https://api.ipify.org").text + "/32"
 
     if existingVPC=='true':
-        print('yes')
         # Subnets & virtual network info
         subnets_cidr = ['10.1.0.0/24']
         vnet_cidr = '10.1.0.0/16'
@@ -35,15 +36,30 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         resource_name_vnet = 'vnet_resource_group'
         # Deploy a resource group with a virtual network and specified number of subnets
         try:
-            subnet_name, vnet_name = DeployOp.create_vnet(credentials,
+            subnet_name_list, vnet_name = DeployOp.create_vnet(credentials,
                                                             subscription_id,
                                                             location,
                                                             subnets_cidr,
                                                             resource_name_vnet,
                                                             vnet_cidr)
+            subnet_name = subnet_name_list[0]
+            network_client = NetworkManagementClient(credentials, subscription_id)
+            # Add service endpoint to subnets
+            subnet = network_client.subnets.get(resource_name_vnet, vnet_name, subnet_name)
+            if not subnet.service_endpoints:
+                subnet.service_endpoints = []
+            subnet.service_endpoints.append(
+                ServiceEndpointPropertiesFormat(service='Microsoft.Storage')
+            )
+            updated_subnet = network_client.subnets.begin_create_or_update(
+                resource_name_vnet,
+                vnet_name,
+                subnet_name,
+                subnet
+            ).result()
+            print(f"Enabled Microsoft.Storage service endpoint for subnet: {subnet_name}")
         except Exception as e:
             raise(e)
-        print(subnet_name[0])
     # Parameters for deployment
     parameters = {
         "IP Addresses Permitted to Remote into Server VM in CIDR Notation": ipAddress,
@@ -59,20 +75,21 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
             "Deploy to New or Existing Virtual Network": "existing",
             "Name of Virtual Network Where MATLAB Web App Server Will Be Deployed": vnet_name,
             "Virtual Network CIDR Range": vnet_cidr,
-            "Name of Subnet for MATLAB Web App Server": subnet_name[0],
+            "Name of Subnet for MATLAB Web App Server": subnet_name,
             "Server Subnet CIDR Range": subnets_cidr[0],
             "Specify Private IP Address to VM Hosting MATLAB Web App Server": '10.1.0.4',
             "Resource Group Name Of Virtual Network": resource_name_vnet,
             "Operating System": platform_arg
         })
 
-    print(parameters)
-
     # Find latest MATLAB release from Github page and get template json path.
     res = requests.get(
         f"https://github.com/mathworks-ref-arch/{ref_arch_name}/tree/main/releases/"
     )
-    latest_releases = [re.findall("releases/(R\d{4}[ab]\\b)", res.text)[-1], re.findall("releases/(R\d{4}[ab]\\b)", res.text)[-2]]
+    latest_releases = [
+        re.findall(r"releases/(R\d{4}[ab]\b)", res.text)[-1],
+        re.findall(r"releases/(R\d{4}[ab]\b)", res.text)[-2]
+    ]
     for i in range(2):
         matlab_release = latest_releases[i]
         print("Testing Health Check Release: " + matlab_release + "\n")
@@ -102,15 +119,17 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
                 print("Deleted the deployment which is deployed using existing virtual network:-",ct)
                 # Wait for above deployment deletion
                 time.sleep(900)
-                # Delete deployment with virtual network
-                DeployOp.delete_resourcegroup(credentials, subscription_id, resource_name_vnet)
-                ct = datetime.datetime.now()
-                print("Deleted the deployment which contains the virtual network:-",ct)
              else:
                 # Delete the deployment
                 deployment_deletion = DeployOp.delete_resourcegroup(credentials, subscription_id, resource_group_name)
                 ct = datetime.datetime.now()
                 print("Date time after deployment and deletion of stack:-", ct)
 
+    if existingVPC=='true':
+        # Delete deployment with virtual network
+        DeployOp.delete_resourcegroup(credentials, subscription_id, resource_name_vnet)
+        ct = datetime.datetime.now()
+        print("Deleted the deployment which contains the virtual network:-", ct)
+
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9], sys.argv[10], sys.argv[11], sys.argv[12])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8], sys.argv[9], sys.argv[10], sys.argv[11])
