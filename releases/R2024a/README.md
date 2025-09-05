@@ -1,5 +1,5 @@
 # MATLAB Web App Server on Microsoft Azure - R2024a
-Follow these steps to deploy the R2024a MATLAB Web App Server reference architecture on Microsoft Azure. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release). 
+Follow these steps to deploy the R2024a MATLAB Web App Server reference architecture on Microsoft Azure. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md?tab=readme-ov-file#deploy-reference-architecture-for-your-release). 
 
 ## Step 1. Launch Template
 To deploy resources on Azure, click **Deploy to Azure**. The Azure Portal open in your web browser.
@@ -20,7 +20,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Region**                | Choose the region to start resources in. Ensure that you select a location which supports your requested instance types. To check which services are supported in each location, see [Azure Region Services](<https://azure.microsoft.com/en-gb/regions/services/>). <p><em>Example:</em> `East US`</p> |
 | **Server VM Instance Size** | Specify the size of the VM you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM and each instance will run multiple workers. We recommend you choose a VM size where the number of cores on your VM match the number of MATLAB workers per VM you plan on using. The template defaults to: `Standard_D4_v3`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D4_v3`</p> |
 | **Operating System**| Choose the operating system for the server. Your options are `Windows` or `Linux`. |
-|**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the ports listed [here](/README.md#ports-to-open-in-existing-virtual-network) are opened. Depending on your security requirements, you can choose to close ports 22 and 3389 after the deployment is complete. |
+|**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the following ports are opened: 443, 22, 3389, and 27000. Depending on your security requirements, you can choose to close ports 22 and 3389 after the deployment is complete. <p><p>If you are deploying to an existing virtual network, you may need to configure the network before deployment. For details, see [How do I deploy to an existing virtual network?](/README.md?tab=readme-ov-file#how-do-i-deploy-to-an-existing-virtual-network) in the FAQ.|
 | **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the virtual network where the server will be deployed.<ul><li>If deploying to a new virtual network, you can use the default `webapp-refarch-vnet` name or specify a new name for the virtual network.</li><li>If deploying to an existing virtual network, the name you specify must match the name of an existing virtual network.</li></ul> |
 | **Resource Group Name of Virtual Network** | <ul><li>If deploying to a new virtual network, leave the default `resourceGroup().name` value unchanged.</li><li>If deploying to an existing virtual network, specify the name of the resource group containing the existing existing virtual network. For example: `webappserver_rsg`.</li></ul> |
 | **Virtual Network CIDR Range** |  Specify the virtual network CIDR range. For example: `10.0.0.0/16` .<ul><li>If deploying to a new virtual network, specify a suitable CIDR range to be used for the new virtual network.</li><li>If deploying to an existing virtual network, this must match the CIDR range of the existing virtual network.</li></ul> |
@@ -74,7 +74,7 @@ To get the MAC address of the network license manager:
 1. Click `Upload` to browse and upload your app by following the prompts.
 ## Upload by Remoting into Server VM
 ### Windows Virtual Machine
-1. Remotely connect to the server VM. For details, see [How do I remotely connect to the server virtual machine?](/README.md#how-do-i-remotely-connect-to-the-server-virtual-machine).
+1. Remotely connect to the server VM. For details, see [How do I remotely connect to the server virtual machine?](/README.md?tab=readme-ov-file#how-do-i-remotely-connect-to-the-server-virtual-machine) in the FAQ.
 1. Open File Explorer and select `This PC`.
 1. Double-click `Network Drive (W:)` to open it.
 1. Double-click the `apps` folder.
@@ -83,7 +83,7 @@ To get the MAC address of the network license manager:
 **Note**: `Network Drive (W:)` is mapped to: `\\appstorage<uniqueID>.file.core.windows.net\webapps`.
 
 ### Linux Virtual Machine
-1. Obtain the public IP address of the server VM. For details, see [How do I remotely connect to the server virtual machine?](/README.md#how-do-i-remotely-connect-to-the-server-virtual-machine).
+1. Obtain the public IP address of the server VM. For details, see [How do I remotely connect to the server virtual machine?](/README.md?tab=readme-ov-file#how-do-i-remotely-connect-to-the-server-virtual-machine) in the FAQ.
 1. From a local command shell, copy your app to the server VM in the folder `/mnt/webapps/apps` using SCP with the command format `scp <local/path/to/webapp> <username>@<virtualMachineIP>:/mnt/webapps/apps`. Authenticate using the username and password you specified in the [Configure Cloud Resources](#step-2-configure-cloud-resources) step of the deployment process.
 For example: `scp ./mywebapp.ctf webappadmin@192.168.1.1:/mnt/webapps/apps`.
 
