@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "Server VM Instance Size": {
-        "defaultValue": "Standard_D4_v3",
+        "defaultValue": "Standard_D4_v4",
         "type": "String",
         "metadata": {
           "description": "Specify the size of the VM you want to use for deploying the server."
@@ -173,7 +173,7 @@
       "WindowsSKU": "matlab-web-app-server-windows-25b",
       "WindowsSKUVersion": "latest",
       "LinuxOffer": "matlab-web-app-server-byol-linux",
-      "LinuxSKU": "matlab-web-app-server-linux-25b",
+      "LinuxSKU": "matlab-web-app-server-linux-25b-gen2",
       "LinuxSKUVersion": "latest",
       "enableSSL": "Yes",
       "certFile": "[if(equals(variables('enableSSL'), 'Yes'), parameters('Base64 Encoded SSL Certificate'), 'NONE')]",
