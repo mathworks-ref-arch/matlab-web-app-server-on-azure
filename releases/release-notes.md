@@ -1,5 +1,9 @@
 ## Release Notes for MATLAB Web App Server on Microsoft Azure
 
+### R2026a
+- You can now deploy MATLAB Web App Server R2026a using the Microsoft Azure reference architecture.
+- All servers use Hyper-V generation 2 for improved performance.
+
 ### R2025b
 - You can now deploy MATLAB Web App Server R2025b using the Microsoft Azure reference architecture.
 - Starting November 4 2025, Linux servers use Ubuntu 24.04 and Hyper-V generation 2 for improved performance and security.
