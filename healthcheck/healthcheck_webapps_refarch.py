@@ -10,6 +10,7 @@ import datetime
 
 import testtools.AzureAuthentication as AzureAuth
 import testtools.deploy as DeployOp
+import testtools.git_utils as git_utils
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.network.models import ServiceEndpointPropertiesFormat, Subnet
 
@@ -18,6 +19,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
     # Deploy template
     # Reference architecture in production.
     ref_arch_name = 'matlab-web-app-server-on-azure'
+    branch_name = git_utils.get_current_branch()
 
     # Common parameters for template deployment.
     tenant_id = tenant_id_arg
@@ -84,7 +86,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
 
     # Find latest MATLAB release from Github page and get template json path.
     res = requests.get(
-        f"https://github.com/mathworks-ref-arch/{ref_arch_name}/tree/main/releases/"
+        f"https://github.com/mathworks-ref-arch/{ref_arch_name}/tree/{branch_name}/releases/"
     )
     latest_releases = [
         re.findall(r"releases/(R\d{4}[ab]\b)", res.text)[-1],
@@ -95,7 +97,7 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         print("Testing Health Check Release: " + matlab_release + "\n")
         github_base_dir = "https://raw.githubusercontent.com/mathworks-ref-arch"
         jsonpath = f"{matlab_release}/templates/mainTemplate.json"
-        template_name = f"{github_base_dir}/{ref_arch_name}/main/releases/{jsonpath}"
+        template_name = f"{github_base_dir}/{ref_arch_name}/{branch_name}/releases/{jsonpath}"
         resource_group_name = "webapp-refarch-health-check-" + matlab_release + date.today().strftime('%m-%d-%Y') + str(random.randint(1,101))
         ct = datetime.datetime.now()
         print("Date time before deployment of stack:-", ct)
