@@ -171,7 +171,7 @@
     "platform": "[parameters('Operating System')]",
     "WindowsOffer": "matlab-web-app-server-byol-windows",
     "WindowsSKU": "matlab-web-app-server-windows-26a",
-    "WindowsSKUVersion": "1.0.0",
+    "WindowsSKUVersion": "latest",
     "LinuxOffer": "matlab-web-app-server-byol-linux",
     "LinuxSKU": "matlab-web-app-server-linux-26a",
     "LinuxSKUVersion": "latest",
