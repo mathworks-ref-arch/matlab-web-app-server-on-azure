@@ -583,7 +583,7 @@
   "outputs": {
     "webAppServerURL": {
       "type": "String",
-      "value": "[variables('webAppServerUrl')]"
+      "value": "[uri(variables('webAppServerUrl'), 'webapps/home/')]"
     },
     "networkLicenseManagerURL": {
       "type": "String",
