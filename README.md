@@ -20,7 +20,7 @@ Use this guide to automate the process of running MATLAB Web App Server on Azure
 Deploying MATLAB Web App Server on Azure automatically deploys a network license manager. However, you can also use an existing network license manager with MATLAB Web App Server on Azure by selecting `existing` from the deployment template.
 
 # Deploy Reference Architecture for Your Release
-To deploy the reference architecture, select your MATLAB Web App Server release from the table and follow the instructions to deploy the server using the provided template. See [Release Notes](release-notes.md) for more information about each release.
+To deploy the reference architecture, select your MATLAB Web App Server release from the table and follow the instructions to deploy the server using the provided template.
 | Release | Supported MATLAB Runtime Versions | Status |
 | ------- | --------------------------------- | ------ |
 | [R2026a](releases/R2026a/README.md) | R2026a, R2025b, R2025a, R2024b, R2024a, R2023b | ✅ Template available. |
@@ -133,3 +133,6 @@ https://www.mathworks.com/solutions/cloud.html
 
 # Technical Support
 If you require assistance or have a request for additional features or capabilities, please contact [MathWorks Technical Support](https://www.mathworks.com/support/contact_us.html).
+
+# Release Notes
+For version history and changes in each release, see [Release Notes](release-notes.md).
