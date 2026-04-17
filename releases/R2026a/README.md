@@ -1,5 +1,5 @@
-# MATLAB Web App Server on Microsoft Azure - R2025a
-Follow these steps to deploy the R2025a MATLAB Web App Server reference architecture on Microsoft Azure. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md?tab=readme-ov-file#deploy-reference-architecture-for-your-release).
+# MATLAB Web App Server on Microsoft Azure - R2026a
+Follow these steps to deploy the R2026a MATLAB Web App Server reference architecture on Microsoft Azure. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md?tab=readme-ov-file#deploy-reference-architecture-for-your-release).
 
 ## Prerequisites
 Before deploying MATLAB Web App Server within an existing virtual network, you must configure the virtual network to enable connectivity. For details, see [How do I deploy to an existing virtual network?](/README.md?tab=readme-ov-file#how-do-i-deploy-to-an-existing-virtual-network) in the FAQ.
@@ -7,9 +7,9 @@ Before deploying MATLAB Web App Server within an existing virtual network, you m
 ## Step 1. Launch Template
 To deploy resources on Azure, click **Deploy to Azure**. The Azure Portal open in your web browser.
 
-<a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2025a%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
+<a  href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathworks-ref-arch%2Fmatlab-web-app-server-on-azure%2Fmain%2Freleases%2FR2026a%2Ftemplates%2FmainTemplate.json"  target ="_blank" >  <img src="https://aka.ms/deploytoazurebutton"/>  </a>
 
-> MATLAB Release: R2025a
+> MATLAB Release: R2026a
 
 <p><strong>Note:</strong> Creating resources on Azure can take up to 10 minutes.</p>
 
@@ -21,7 +21,7 @@ Provide values for parameters in the custom deployment template on the Azure Por
 | **Subscription**            | Choose an Azure subscription to use for purchasing resources.<p><em>Example:</em> `VERTHAM Dev`</p>|
 | **Resource group**          | Choose a name for the resource group that will hold the resources. <p><em>Example:</em> `Saveros`</p>|
 | **Region**                | Choose the region to start resources in. Ensure that you select a location which supports your requested instance types. To check which services are supported in each location, see [Azure Region Services](<https://azure.microsoft.com/en-gb/regions/services/>). <p><em>Example:</em> `East US`</p> |
-| **Server VM Instance Size** | Specify the VM size you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM, and each instance can run multiple sessions. Choose a VM size that has at least one core per four sessions you plan on using, with a minimum of two cores. The template defaults to: `Standard_D4_v3`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D16_v5`</p> |
+| **Server VM Instance Size** | Specify the VM size you plan on using for deployment. Each MATLAB Web App Server instance runs on a VM, and each instance can run multiple sessions. Choose a VM size that has at least one core per four sessions you plan on using, with a minimum of two cores. The template defaults to: `Standard_D4s_v5`. This configuration has 4 vCPUs and 16 GiB of Memory. For more information, see the Azure [documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general). <p><em>Example:</em> `Standard_D4_v4`</p> |
 | **Operating System**| Choose the operating system for the server. Your options are `Windows` or `Linux`. |
 |**Deploy to New or Existing Virtual Network**|  Specify whether you want to create a `new` virtual network for your deployment or use an `existing` one. When deploying to a new virtual network, by default, the following ports are opened: 443, 22, 3389, and 27000. Depending on your security requirements, you can choose to close ports 22 and 3389 after the deployment is complete. <p><p>If you are deploying to an existing virtual network, you may need to configure the network before deployment. For details, see [How do I deploy to an existing virtual network?](/README.md?tab=readme-ov-file#how-do-i-deploy-to-an-existing-virtual-network) in the FAQ.|
 | **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the virtual network where the server will be deployed.<ul><li>If deploying to a new virtual network, you can use the default `webapp-refarch-vnet` name or specify a new name for the virtual network.</li><li>If deploying to an existing virtual network, the name you specify must match the name of an existing virtual network.</li></ul> |
