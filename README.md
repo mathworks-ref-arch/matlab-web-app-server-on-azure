@@ -23,11 +23,11 @@ Deploying MATLAB Web App Server on Azure automatically deploys a network license
 To deploy the reference architecture, select your MATLAB Web App Server release from the table and follow the instructions to deploy the server using the provided template.
 | Release | Supported MATLAB Runtime Versions | Status |
 | ------- | --------------------------------- | ------ |
+| [R2026b](releases/R2026b/README.md) | R2026b, R2026a, R2025b, R2025a, R2024b, R2024a | ✅ Template available. |
 | [R2026a](releases/R2026a/README.md) | R2026a, R2025b, R2025a, R2024b, R2024a, R2023b | ✅ Template available. |
 | [R2025b](releases/R2025b/README.md) | R2025b, R2025a, R2024b, R2024a, R2023b, R2023a* | ✅ Template available. |
-| [R2025a](releases/R2025a/README.md) | R2025a, R2024b, R2024a, R2023b, R2023a*, R2022b* | ✅ Template available. |
+| [R2025a](releases/R2025a/README.md) | R2025a, R2024b, R2024a, R2023b, R2023a*, R2022b* | ⚠️ Template will be removed in September 2027. |
 | [R2024b](releases/R2024b/README.md) | R2024b, R2024a, R2023b, R2023a*, R2022b*, R2022a* | ⚠️ Template will be removed in March 2027. |
-| [R2024a](releases/R2024a/README.md) | R2024a, R2023b, R2023a*, R2022b*, R2022a*, R2021b* | ⚠️ Template will be removed in September 2026. |
 
 > [!WARNING]
 > \*When the server is configured to use MATLAB Runtime versions prior to R2023b, the `unsafe-inline` attribute is set in the `script-src` directive of the server's Content Security Policy on the server and cannot be removed. The attribute allows inline JavaScript execution and event handlers contained within a web app to execute on the server. These runtimes are disabled by default starting in R2024b. You can enable them using the [webapps-runtime](https://www.mathworks.com/help/webappserver/ref/webappsruntime.html) command.
@@ -76,6 +76,8 @@ If you are deploying MATLAB Web App Server to an existing virtual network, you m
 | `22` | SSH - used for remoting into Linux machines |
 | `3389` | RDP - used for remoting into Windows machines |
 | `27000` | Required for communication between network license manager and Web App Server |
+| `8080`, `5000`, `5001`, `3000`, `9090` | Required for admin portal services on Linux servers (since R2026b). |
+| `8443`, `9000` | Required for Keycloak services on Linux servers (since R2026b). |
 
 ### Create Service Endpoint in Virtual Network (Since R2025a)
 Starting in R2025a, if you are using an existing virtual network and assign a public IP address to the VM hosting MATLAB Web App Server, then you must manually add a service endpoint to the virtual network *before* deploying MATLAB Web App Server in order to create and access the storage account. For more details, see [Grant access from a virtual network](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security?tabs=azure-portal#grant-access-from-a-virtual-network) in the Microsoft Azure documentation.
@@ -102,7 +104,7 @@ Set the following parameter values in the template based on your existing virtua
 | **Resource Group Name of Virtual Network** |   Specify the name of the Azure resource group that has your existing virtual network. |
 | **Name of Virtual Network Where MATLAB Web App Server Will Be Deployed** |  Specify the name of the existing virtual network where the server will be deployed. |
 | **Virtual Network CIDR Range** |  Specify existing virtual network CIDR range. |
-| **Name of Subnet for MATLAB Web App Server** | Specify the name of a subnet within the existing virtual network that the server can use. |
+| **Name of Subnet for MATLAB Web App Server** | Specify the name of a subnet within the existing virtual network that the server can use. <p>**Note:** If you assign the MATLAB Web App Server VM a private IP, ensure the subnet has default outbound internet access enabled.</p> |
 | **Server Subnet CIDR Range** |  Specify existing virtual network subnet CIDR range. |
 | **Specify Private IP Address to VM Hosting MATLAB Web App Server** |   Specify a private IP address to the VM hosting the server. For example: 10.0.0.4 . |
 
