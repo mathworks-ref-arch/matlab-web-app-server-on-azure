@@ -1,5 +1,9 @@
 ## Release Notes for MATLAB Web App Server on Microsoft Azure
 
+### R2026b
+- You can now deploy MATLAB Web App Server R2026b using the Microsoft Azure reference architecture.
+- You can now manage MATLAB Web App Server Linux instances using the MATLAB Web App Server Admin Portal, which is a web-based interface to edit server settings, configure access control for web applications, and view server logs. For more details, see [Connect and Log In to the Admin Portal](/releases/R2026b/README.md#step-4-connect-and-log-in-to-the-admin-portal-linux-server-only).
+
 ### R2026a
 - You can now deploy MATLAB Web App Server R2026a using the Microsoft Azure reference architecture.
 - All servers use Hyper-V generation 2 for improved performance.
