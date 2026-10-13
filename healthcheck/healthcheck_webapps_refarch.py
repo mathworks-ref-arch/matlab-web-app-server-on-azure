@@ -92,7 +92,17 @@ def main(tenant_id_arg, client_id_arg, client_secret_arg, subscription_id_arg, u
         "Username to Remote into Server VM and Network License Manager Web Interface": username,
         "Password to Remote into Server VM and Network License Manager Web Interface": password
     }
-    
+    if location_arg == "eastus":
+        vm_params = {
+            "Server VM Instance Size": "Standard_F4s_v2"
+        }
+    else:
+        vm_params = {
+            "Server VM Instance Size": "Standard_D4s_v5"
+        }
+
+    parameters.update(vm_params)                  
+
     if existingVPC == 'true':
         parameters.update({
             "Deploy to New or Existing Virtual Network": "existing",
